@@ -3,1971 +3,1231 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kaizen — Game Localization Experts</title>
-    <meta name="description" content="Kaizen delivers professional game localization services specializing in Cocos engine games. Translation, QA, voice-over, subtitles, and UI/UX localization across 20+ languages.">
+    <title>Kaizen Software - Translation and Localization</title>
+    <meta name="description" content="Kaizen helps businesses translate and localize software, apps, and digital products with clarity, consistency, and cultural understanding.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%232563eb'/%3E%3Cpath d='M18 14h9v18l17-18h11L35 35l21 15H43L27 38v12h-9V14z' fill='white'/%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* ===== RESET & BASE ===== */
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        
         :root {
-            --color-bg: #0B0B14;
-            --color-surface: #12121F;
-            --color-surface-2: #1A1A2E;
-            --color-border: #2A2A3E;
-            --color-primary: #00D4AA;
-            --color-primary-dim: #00D4AA20;
-            --color-accent: #FF6B35;
-            --color-text: #E8E8EC;
-            --color-text-muted: #8888A0;
-            --color-text-dim: #5A5A72;
-            --font-heading: 'Space Grotesk', sans-serif;
-            --font-body: 'Inter', sans-serif;
-            --radius: 12px;
-            --radius-sm: 8px;
-            --max-width: 1200px;
-            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --ink: #102033;
+            --muted: #5e7188;
+            --paper: #f5fbff;
+            --panel: #ffffff;
+            --panel-soft: #e8f5ff;
+            --line: #cfe5f5;
+            --green: #2563eb;
+            --green-dark: #1e3a8a;
+            --gold: #38bdf8;
+            --blue: #0ea5e9;
+            --radius: 8px;
+            --shadow: 0 28px 80px rgba(15, 65, 120, 0.14);
+            --max: 1180px;
         }
 
-        html { scroll-behavior: smooth; }
-        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 96px;
+        }
+
         body {
-            font-family: var(--font-body);
-            background: var(--color-bg);
-            color: var(--color-text);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
+            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.55;
             overflow-x: hidden;
         }
 
-        /* ===== SCROLLBAR ===== */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--color-bg); }
-        ::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
-
-        /* ===== TYPOGRAPHY ===== */
-        h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height: 1.2; }
-        
-        .section-label {
-            font-family: var(--font-heading);
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--color-primary);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-        .section-label::before {
-            content: '';
-            width: 24px;
-            height: 1px;
-            background: var(--color-primary);
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.35;
+            background:
+                linear-gradient(90deg, rgba(22, 22, 22, 0.04) 1px, transparent 1px),
+                linear-gradient(180deg, rgba(22, 22, 22, 0.04) 1px, transparent 1px);
+            background-size: 52px 52px;
+            mask-image: linear-gradient(180deg, #000 0%, transparent 75%);
         }
 
-        /* ===== LAYOUT ===== */
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
         .container {
-            max-width: var(--max-width);
+            width: min(var(--max), calc(100% - 40px));
             margin: 0 auto;
-            padding: 0 2rem;
         }
 
-        section {
-            padding: 6rem 0;
-            position: relative;
-        }
-
-        /* ===== NAVIGATION ===== */
-        nav {
+        .nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            z-index: 1000;
-            padding: 1rem 0;
-            transition: var(--transition);
-            background: transparent;
-        }
-        
-        nav.scrolled {
-            background: rgba(11, 11, 20, 0.92);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--color-border);
+            z-index: 20;
+            transition: background 220ms ease, box-shadow 220ms ease, transform 220ms ease;
         }
 
-        .nav-inner {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 0 2rem;
+        .nav.is-scrolled {
+            background: rgba(247, 244, 237, 0.92);
+            backdrop-filter: blur(18px);
+            box-shadow: 0 16px 44px rgba(31, 28, 22, 0.08);
+        }
+
+        .nav__inner {
+            min-height: 76px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 24px;
         }
 
-        .logo {
-            font-family: var(--font-heading);
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--color-text);
-            text-decoration: none;
-            letter-spacing: -0.02em;
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            letter-spacing: 0;
+        }
+
+        .brand__mark {
+            width: 38px;
+            height: 38px;
+            display: grid;
+            place-items: center;
+            border-radius: var(--radius);
+            background: var(--green);
+            color: white;
+            font-weight: 800;
+        }
+
+        .nav__links {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 6px;
+            padding: 6px;
+            border: 1px solid rgba(22, 22, 22, 0.08);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.5);
         }
-        
-        .logo-icon {
-            width: 32px;
-            height: 32px;
-            background: var(--color-primary);
-            border-radius: 8px;
+
+        .nav__links a {
+            padding: 10px 14px;
+            border-radius: 999px;
+            color: var(--muted);
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: color 180ms ease, background 180ms ease;
+        }
+
+        .nav__links a:hover,
+        .nav__links a.is-active {
+            background: var(--ink);
+            color: white;
+        }
+
+        .nav__actions {
             display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .lang {
+            min-width: 44px;
+            padding: 10px 12px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            color: var(--muted);
+            font-size: 0.86rem;
+            font-weight: 700;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.54);
+        }
+
+        .menu {
+            display: none;
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: var(--panel);
+        }
+
+        .menu span {
+            display: block;
+            width: 18px;
+            height: 2px;
+            margin: 4px auto;
+            background: var(--ink);
+        }
+
+        .button {
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--color-bg);
+            min-height: 46px;
+            padding: 0 18px;
+            border: 1px solid var(--ink);
+            border-radius: var(--radius);
+            background: var(--ink);
+            color: white;
+            font-weight: 800;
+            transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
         }
 
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            list-style: none;
-        }
-        
-        .nav-links a {
-            color: var(--color-text-muted);
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: var(--transition);
-            position: relative;
-        }
-        .nav-links a:hover { color: var(--color-text); }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 34px rgba(22, 22, 22, 0.18);
         }
 
-        /* Language Selector */
-        .lang-selector {
-            position: relative;
-            cursor: pointer;
-        }
-
-        .lang-current {
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            padding: 0.4rem 0.75rem;
-            background: var(--color-surface);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-sm);
-            color: var(--color-text-muted);
-            font-size: 0.8rem;
-            font-weight: 500;
-            transition: var(--transition);
-            font-family: var(--font-body);
-        }
-        .lang-current:hover { border-color: var(--color-primary); color: var(--color-text); }
-
-        .lang-dropdown {
-            position: absolute;
-            top: calc(100% + 0.5rem);
-            right: 0;
-            background: var(--color-surface);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-sm);
-            overflow: hidden;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-8px);
-            transition: var(--transition);
-            min-width: 140px;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
-        }
-        .lang-dropdown.open { opacity: 1; visibility: visible; transform: translateY(0); }
-
-        .lang-option {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.6rem 1rem;
-            font-size: 0.8rem;
-            color: var(--color-text-muted);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        .lang-option:hover { background: var(--color-surface-2); color: var(--color-text); }
-        .lang-option.active { color: var(--color-primary); }
-
-        /* CTA Button */
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.6rem 1.5rem;
-            background: var(--color-primary);
-            color: var(--color-bg);
-            font-family: var(--font-heading);
-            font-size: 0.875rem;
-            font-weight: 600;
-            border: none;
-            border-radius: var(--radius-sm);
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-        }
-        .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0, 212, 170, 0.25); }
-
-        .btn-outline {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.6rem 1.5rem;
+        .button--light {
             background: transparent;
-            color: var(--color-text);
-            font-family: var(--font-heading);
-            font-size: 0.875rem;
-            font-weight: 600;
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-sm);
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-        }
-        .btn-outline:hover { border-color: var(--color-primary); color: var(--color-primary); }
-
-        /* Mobile Menu */
-        .mobile-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 4px;
-        }
-        .mobile-toggle span {
-            width: 22px;
-            height: 2px;
-            background: var(--color-text);
-            border-radius: 2px;
-            transition: var(--transition);
+            color: var(--ink);
         }
 
-        /* ===== HERO ===== */
+        .button--light:hover {
+            background: white;
+        }
+
         .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
+            min-height: 94vh;
+            padding: 112px 0 56px;
+            display: grid;
+            align-items: end;
             position: relative;
             overflow: hidden;
-            padding-top: 5rem;
         }
 
-        .hero-grid {
+        .hero::before {
+            content: "";
             position: absolute;
             inset: 0;
-            background-image: 
-                linear-gradient(rgba(0, 212, 170, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 212, 170, 0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
-            mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+            z-index: -2;
+            background:
+                linear-gradient(90deg, rgba(247, 244, 237, 0.98) 0%, rgba(247, 244, 237, 0.86) 42%, rgba(247, 244, 237, 0.2) 100%),
+                url("https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1900&q=82") center right / cover;
         }
 
-        .hero-glow {
+        .hero::after {
+            content: "";
             position: absolute;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.15;
-            pointer-events: none;
-        }
-        .hero-glow-1 { top: -200px; right: -100px; background: var(--color-primary); }
-        .hero-glow-2 { bottom: -200px; left: -100px; background: #5B3FFF; }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 720px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 28vh;
+            z-index: -1;
+            background: linear-gradient(180deg, transparent, var(--paper));
         }
 
-        .hero-badge {
+        .hero__grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.7fr);
+            gap: 44px;
+            align-items: end;
+        }
+
+        .eyebrow {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.4rem 1rem;
-            background: var(--color-primary-dim);
-            border: 1px solid rgba(0, 212, 170, 0.2);
-            border-radius: 100px;
-            font-size: 0.8rem;
-            color: var(--color-primary);
-            font-weight: 500;
-            margin-bottom: 2rem;
-        }
-        .hero-badge-dot {
-            width: 6px;
-            height: 6px;
-            background: var(--color-primary);
-            border-radius: 50%;
-            animation: pulse-dot 2s infinite;
-        }
-        @keyframes pulse-dot {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
+            gap: 10px;
+            color: var(--green-dark);
+            font-size: 0.78rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
         }
 
-        .hero h1 {
-            font-size: clamp(2.5rem, 5.5vw, 4.5rem);
-            font-weight: 700;
-            line-height: 1.08;
-            letter-spacing: -0.03em;
-            margin-bottom: 1.5rem;
-        }
-        .hero h1 .highlight {
-            background: linear-gradient(135deg, var(--color-primary), #00A88A);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .eyebrow::before {
+            content: "";
+            width: 34px;
+            height: 2px;
+            background: var(--green);
         }
 
-        .hero-subtitle {
-            font-size: 1.125rem;
-            color: var(--color-text-muted);
-            line-height: 1.7;
-            margin-bottom: 2.5rem;
-            max-width: 560px;
+        h1 {
+            max-width: 760px;
+            margin-top: 22px;
+            font-size: clamp(3.5rem, 9vw, 8.5rem);
+            line-height: 0.9;
+            letter-spacing: 0;
         }
 
-        .hero-actions {
+        .hero__copy {
+            max-width: 650px;
+            margin-top: 28px;
+            color: #4f514f;
+            font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+        }
+
+        .hero__actions {
             display: flex;
-            gap: 1rem;
             flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 34px;
         }
 
-        .hero-stats {
-            display: flex;
-            gap: 3rem;
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--color-border);
+        .hero__card {
+            padding: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.58);
+            border-radius: var(--radius);
+            background: rgba(255, 255, 255, 0.74);
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow);
         }
-        .hero-stat-value {
-            font-family: var(--font-heading);
+
+        .metric {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            overflow: hidden;
+            border-radius: var(--radius);
+            border: 1px solid var(--line);
+            background: var(--line);
+        }
+
+        .metric div {
+            padding: 18px;
+            background: var(--panel);
+        }
+
+        .metric strong {
+            display: block;
             font-size: 2rem;
-            font-weight: 700;
-            color: var(--color-text);
-        }
-        .hero-stat-label {
-            font-size: 0.8rem;
-            color: var(--color-text-dim);
-            margin-top: 0.25rem;
+            line-height: 1;
         }
 
-        /* ===== SERVICES ===== */
-        .services-grid {
+        .metric span {
+            display: block;
+            margin-top: 7px;
+            color: var(--muted);
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
+
+        .hero__card p {
+            margin-top: 18px;
+            color: var(--muted);
+        }
+
+        section {
+            padding: 92px 0;
+            position: relative;
+        }
+
+        .section-head {
+            display: grid;
+            grid-template-columns: 0.7fr 1.3fr;
+            gap: 44px;
+            align-items: end;
+            margin-bottom: 34px;
+        }
+
+        .section-head h2 {
+            font-size: clamp(2.1rem, 4vw, 4.4rem);
+            line-height: 0.96;
+            letter-spacing: 0;
+        }
+
+        .section-head p {
+            color: var(--muted);
+            font-size: 1.02rem;
+        }
+
+        .services {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 1px;
-            background: var(--color-border);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius);
             overflow: hidden;
-            margin-top: 3rem;
-        }
-
-        .service-card {
-            background: var(--color-surface);
-            padding: 2.5rem 2rem;
-            transition: var(--transition);
-            position: relative;
-        }
-        .service-card:hover { background: var(--color-surface-2); }
-        .service-card:hover .service-icon { transform: scale(1.1); }
-
-        .service-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            transition: var(--transition);
-            background: var(--color-primary-dim);
-        }
-
-        .service-card h3 {
-            font-size: 1.125rem;
-            margin-bottom: 0.75rem;
-            color: var(--color-text);
-        }
-        .service-card p {
-            font-size: 0.875rem;
-            color: var(--color-text-muted);
-            line-height: 1.7;
-        }
-
-        /* ===== ABOUT ===== */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            margin-top: 3rem;
-        }
-
-        .about-visual {
-            position: relative;
-            aspect-ratio: 4/3;
-            background: var(--color-surface);
-            border: 1px solid var(--color-border);
+            border: 1px solid var(--line);
             border-radius: var(--radius);
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .about-visual-inner {
-            text-align: center;
-            padding: 2rem;
-        }
-        
-        .kaizen-kanji {
-            font-size: 6rem;
-            font-weight: 700;
-            color: var(--color-primary);
-            opacity: 0.15;
-            line-height: 1;
-            margin-bottom: 1rem;
-        }
-        
-        .kaizen-meaning {
-            font-family: var(--font-heading);
-            font-size: 1.5rem;
-            color: var(--color-text);
-            letter-spacing: 0.1em;
-        }
-        
-        .kaizen-sub {
-            font-size: 0.875rem;
-            color: var(--color-text-muted);
-            margin-top: 0.5rem;
+            background: var(--line);
         }
 
-        .about-content h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.02em;
+        .service {
+            min-height: 270px;
+            padding: 32px;
+            background: var(--panel);
+            transition: transform 220ms ease, background 220ms ease;
         }
 
-        .about-content p {
-            color: var(--color-text-muted);
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
+        .service:hover {
+            transform: translateY(-4px);
+            background: #fbfaf6;
         }
 
-        .about-features {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin-top: 2rem;
+        .number {
+            color: var(--gold);
+            font-weight: 800;
+            font-size: 0.84rem;
         }
 
-        .about-feature {
-            display: flex;
-            gap: 0.75rem;
-            align-items: flex-start;
-        }
-        .about-feature-icon {
-            width: 36px;
-            height: 36px;
-            min-width: 36px;
-            border-radius: 8px;
-            background: var(--color-primary-dim);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--color-primary);
-            font-size: 1rem;
-        }
-        .about-feature-text h4 {
-            font-size: 0.875rem;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-        .about-feature-text p {
-            font-size: 0.8rem;
-            color: var(--color-text-dim);
-            margin-bottom: 0;
+        .service h3,
+        .value h3,
+        .edge h3,
+        .role h3 {
+            margin-top: 22px;
+            font-size: 1.25rem;
         }
 
-        /* ===== GLOBAL ===== */
-        .global-section { background: var(--color-surface); }
-
-        .global-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            margin-top: 3rem;
+        .service p,
+        .value p,
+        .edge p,
+        .role p {
+            margin-top: 12px;
+            color: var(--muted);
         }
 
-        .global-card {
-            background: var(--color-bg);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius);
-            padding: 2rem;
-            transition: var(--transition);
-            position: relative;
+        .about {
+            background: #111;
+            color: white;
             overflow: hidden;
         }
-        .global-card:hover { border-color: var(--color-primary); transform: translateY(-4px); }
 
-        .global-card-flag {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .global-card h3 {
-            font-size: 1rem;
-            margin-bottom: 0.25rem;
-        }
-        .global-card .global-city {
-            font-size: 0.8rem;
-            color: var(--color-text-dim);
-            margin-bottom: 1rem;
-        }
-        .global-card p {
-            font-size: 0.8rem;
-            color: var(--color-text-muted);
-            line-height: 1.6;
-        }
-
-        .global-card-tag {
-            display: inline-block;
-            padding: 0.2rem 0.6rem;
-            background: var(--color-primary-dim);
-            color: var(--color-primary);
-            font-size: 0.7rem;
-            font-weight: 600;
-            border-radius: 100px;
-            margin-top: 1rem;
-        }
-
-        /* ===== PROCESS ===== */
-        .process-steps {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-            position: relative;
-        }
-        .process-steps::before {
-            content: '';
+        .about::before {
+            content: "";
             position: absolute;
-            top: 36px;
-            left: 60px;
-            right: 60px;
-            height: 1px;
-            background: linear-gradient(90deg, var(--color-border), var(--color-primary), var(--color-border));
-            opacity: 0.5;
+            inset: 0;
+            opacity: 0.42;
+            background:
+                linear-gradient(90deg, #111 0%, rgba(17, 17, 17, 0.8) 48%, rgba(17, 17, 17, 0.28) 100%),
+                url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1800&q=82") center / cover;
         }
 
-        .process-step {
-            text-align: center;
-            position: relative;
-        }
-        .process-step-num {
-            width: 72px;
-            height: 72px;
-            border-radius: 50%;
-            background: var(--color-surface);
-            border: 2px solid var(--color-border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-family: var(--font-heading);
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--color-primary);
+        .about .container {
             position: relative;
             z-index: 1;
-            transition: var(--transition);
-        }
-        .process-step:hover .process-step-num {
-            border-color: var(--color-primary);
-            background: var(--color-primary-dim);
         }
 
-        .process-step h3 {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-        }
-        .process-step p {
-            font-size: 0.8rem;
-            color: var(--color-text-muted);
-            line-height: 1.6;
+        .about .section-head p,
+        .about .eyebrow,
+        .about-card p {
+            color: #d6d2c9;
         }
 
-        /* ===== TECH ===== */
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .tech-card {
-            background: var(--color-surface);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius);
-            padding: 2rem;
-            transition: var(--transition);
-        }
-        .tech-card:hover { border-color: var(--color-primary); }
-
-        .tech-card-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .tech-card h3 {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-        }
-        .tech-card p {
-            font-size: 0.8rem;
-            color: var(--color-text-muted);
-            line-height: 1.7;
-        }
-
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-            margin-top: 1rem;
-        }
-        .tech-tag {
-            padding: 0.2rem 0.6rem;
-            background: var(--color-surface-2);
-            border: 1px solid var(--color-border);
-            border-radius: 100px;
-            font-size: 0.7rem;
-            color: var(--color-text-muted);
-        }
-
-        /* ===== CTA ===== */
-        .cta-section {
-            text-align: center;
-            padding: 8rem 0;
-        }
-        .cta-section h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            margin-bottom: 1rem;
-            letter-spacing: -0.02em;
-        }
-        .cta-section p {
-            color: var(--color-text-muted);
-            max-width: 480px;
-            margin: 0 auto 2.5rem;
-            line-height: 1.7;
-        }
-        .cta-actions {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        /* ===== CONTACT ===== */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 4rem;
-            margin-top: 3rem;
-        }
-
-        .contact-info h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        .contact-info > p {
-            color: var(--color-text-muted);
-            margin-bottom: 2rem;
-            line-height: 1.7;
-        }
-
-        .contact-methods {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-        .contact-method {
-            display: flex;
-            gap: 1rem;
-            align-items: flex-start;
-        }
-        .contact-method-icon {
-            width: 40px;
-            height: 40px;
-            min-width: 40px;
-            border-radius: 10px;
-            background: var(--color-primary-dim);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--color-primary);
-            font-size: 1.1rem;
-        }
-        .contact-method h4 {
-            font-size: 0.875rem;
-            margin-bottom: 0.15rem;
-        }
-        .contact-method p {
-            font-size: 0.8rem;
-            color: var(--color-text-muted);
-        }
-
-        .contact-form {
-            background: var(--color-surface);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius);
-            padding: 2.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.25rem;
-        }
-        .form-group label {
-            display: block;
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: var(--color-text-muted);
-            margin-bottom: 0.5rem;
-        }
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            background: var(--color-bg);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-sm);
-            color: var(--color-text);
-            font-family: var(--font-body);
-            font-size: 0.875rem;
-            transition: var(--transition);
-            outline: none;
-        }
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            border-color: var(--color-primary);
-            box-shadow: 0 0 0 3px var(--color-primary-dim);
-        }
-        .form-group textarea { resize: vertical; min-height: 120px; }
-        .form-group select { cursor: pointer; }
-        .form-group select option { background: var(--color-surface); }
-
-        .form-row {
+        .about__grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1rem;
+            gap: 18px;
         }
 
-        .form-submit {
-            width: 100%;
-            padding: 0.85rem;
-            margin-top: 0.5rem;
+        .about-card {
+            min-height: 250px;
+            padding: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: var(--radius);
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(18px);
         }
 
-        /* ===== FOOTER ===== */
-        footer {
-            border-top: 1px solid var(--color-border);
-            padding: 3rem 0 2rem;
+        .about-card strong {
+            display: block;
+            color: var(--gold);
+            font-size: 3.5rem;
+            line-height: 1;
         }
 
-        .footer-inner {
-            display: flex;
-            justify-content: space-between;
+        .values {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .value,
+        .edge,
+        .role {
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: rgba(255, 255, 255, 0.7);
+            transition: transform 220ms ease, box-shadow 220ms ease;
+        }
+
+        .value:hover,
+        .edge:hover,
+        .role:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .split {
+            display: grid;
+            grid-template-columns: 0.95fr 1.05fr;
+            gap: 44px;
             align-items: center;
         }
 
-        .footer-left p {
-            font-size: 0.8rem;
-            color: var(--color-text-dim);
-            margin-top: 0.5rem;
+        .image-panel {
+            min-height: 560px;
+            border-radius: var(--radius);
+            background:
+                linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.34)),
+                url("https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=82") center / cover;
+            box-shadow: var(--shadow);
         }
 
-        .footer-links {
+        .edges {
+            display: grid;
+            gap: 14px;
+        }
+
+        .edge {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 18px;
+            align-items: start;
+        }
+
+        .edge__icon {
+            width: 44px;
+            height: 44px;
+            display: grid;
+            place-items: center;
+            border-radius: var(--radius);
+            background: var(--green);
+            color: white;
+            font-weight: 800;
+        }
+
+        .standards {
+            margin-top: 18px;
+            display: grid;
+            gap: 12px;
+        }
+
+        .standard {
+            display: grid;
+            grid-template-columns: 160px 1fr auto;
+            gap: 14px;
+            align-items: center;
+            color: var(--muted);
+            font-weight: 700;
+        }
+
+        .bar {
+            height: 10px;
+            border-radius: 999px;
+            background: var(--line);
+            overflow: hidden;
+        }
+
+        .bar span {
+            display: block;
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, var(--green), var(--blue));
+            transform-origin: left;
+            transform: scaleX(0);
+            transition: transform 900ms cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .is-visible .bar span {
+            transform: scaleX(1);
+        }
+
+        .careers {
+            background: var(--panel-soft);
+        }
+
+        .culture-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 18px;
+            margin-bottom: 18px;
+        }
+
+        .culture-copy {
+            padding: 34px;
+            border-radius: var(--radius);
+            background: var(--panel);
+            border: 1px solid var(--line);
+        }
+
+        .culture-copy h3 {
+            font-size: clamp(2rem, 4vw, 4rem);
+            line-height: 0.98;
+        }
+
+        .culture-copy p {
+            margin-top: 18px;
+            color: var(--muted);
+        }
+
+        .culture-photo {
+            min-height: 360px;
+            border-radius: var(--radius);
+            background:
+                linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.28)),
+                url("https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=82") center / cover;
+        }
+
+        .role-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .role {
+            background: var(--panel);
+        }
+
+        .role__meta {
             display: flex;
-            gap: 2rem;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 18px;
         }
-        .footer-links a {
-            font-size: 0.8rem;
-            color: var(--color-text-muted);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        .footer-links a:hover { color: var(--color-primary); }
 
-        /* ===== ANIMATIONS ===== */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            min-height: 30px;
+            padding: 0 10px;
+            border-radius: 999px;
+            background: #f0eadf;
+            color: #57514a;
+            font-size: 0.78rem;
+            font-weight: 800;
         }
-        .fade-up.visible {
+
+        .role a {
+            display: inline-flex;
+            margin-top: 22px;
+            color: var(--green-dark);
+            font-weight: 800;
+        }
+
+        .cta {
+            padding: 84px 0;
+            background: var(--green-dark);
+            color: white;
+        }
+
+        .cta__inner {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 28px;
+            align-items: center;
+        }
+
+        .cta h2 {
+            font-size: clamp(2.3rem, 5vw, 5rem);
+            line-height: 0.95;
+        }
+
+        .cta p {
+            max-width: 620px;
+            margin-top: 18px;
+            color: #d8e9df;
+        }
+
+        .cta .button {
+            border-color: white;
+            background: white;
+            color: var(--green-dark);
+        }
+
+        .footer {
+            padding: 46px 0;
+            background: #111;
+            color: white;
+        }
+
+        .footer__inner {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 30px;
+            align-items: end;
+        }
+
+        .footer p {
+            max-width: 440px;
+            margin-top: 12px;
+            color: #bfb9ae;
+        }
+
+        .contact-list {
+            display: grid;
+            gap: 8px;
+            color: #d9d5ce;
+            font-weight: 700;
+            text-align: right;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 700ms ease, transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .reveal.is-visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 1024px) {
-            .services-grid { grid-template-columns: repeat(2, 1fr); }
-            .global-grid { grid-template-columns: repeat(2, 1fr); }
-            .process-steps { grid-template-columns: repeat(2, 1fr); gap: 2rem 3rem; }
-            .process-steps::before { display: none; }
-            .tech-grid { grid-template-columns: repeat(2, 1fr); }
+        .reveal[data-delay="1"] {
+            transition-delay: 90ms;
         }
 
-        @media (max-width: 768px) {
-            section { padding: 4rem 0; }
-            
-            .nav-links { display: none; }
-            .mobile-toggle { display: flex; }
-            
-            .nav-links.open {
-                display: flex;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--color-surface);
-                border-bottom: 1px solid var(--color-border);
-                padding: 1.5rem 2rem;
-                gap: 1rem;
+        .reveal[data-delay="2"] {
+            transition-delay: 180ms;
+        }
+
+        .reveal[data-delay="3"] {
+            transition-delay: 270ms;
+        }
+
+        .float {
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
             }
 
-            .hero h1 { font-size: 2.25rem; }
-            .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
-            .hero-stat-value { font-size: 1.5rem; }
-
-            .services-grid { grid-template-columns: 1fr; }
-            .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-            .about-features { grid-template-columns: 1fr; }
-            .global-grid { grid-template-columns: 1fr; }
-            .process-steps { grid-template-columns: 1fr; }
-            .tech-grid { grid-template-columns: 1fr; }
-            .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
-            .form-row { grid-template-columns: 1fr; }
-            .footer-inner { flex-direction: column; gap: 1.5rem; text-align: center; }
-            .footer-links { flex-wrap: wrap; justify-content: center; }
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
         }
 
-        /* ===== HIDDEN LANGUAGE SPANS ===== */
-        [data-lang] { display: none; }
-        [data-lang].active { display: block; }
-        span[data-lang], a[data-lang], button[data-lang] { display: none; }
-        span[data-lang].active, a[data-lang].active, button[data-lang].active { display: inline; }
-        div[data-lang].active { display: flex; }
-        li[data-lang].active { display: list-item; }
+        @media (max-width: 980px) {
+            .nav__links {
+                position: fixed;
+                top: 76px;
+                left: 20px;
+                right: 20px;
+                display: none;
+                flex-direction: column;
+                align-items: stretch;
+                border-radius: var(--radius);
+                background: rgba(255, 255, 255, 0.96);
+                box-shadow: var(--shadow);
+            }
+
+            .nav__links.is-open {
+                display: flex;
+            }
+
+            .nav__links a {
+                border-radius: var(--radius);
+            }
+
+            .menu {
+                display: block;
+            }
+
+            .hero__grid,
+            .section-head,
+            .about__grid,
+            .split,
+            .culture-grid,
+            .cta__inner,
+            .footer__inner {
+                grid-template-columns: 1fr;
+            }
+
+            .services,
+            .values,
+            .role-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero__card {
+                max-width: 520px;
+            }
+
+            .contact-list {
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                width: min(var(--max), calc(100% - 28px));
+            }
+
+            .nav__actions .button {
+                display: none;
+            }
+
+            .hero {
+                min-height: auto;
+                padding-top: 104px;
+            }
+
+            .hero::before {
+                background:
+                    linear-gradient(180deg, rgba(247, 244, 237, 0.7) 0%, rgba(247, 244, 237, 0.98) 58%, var(--paper) 100%),
+                    url("https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=82") center top / cover;
+            }
+
+            h1 {
+                font-size: clamp(3.3rem, 17vw, 5rem);
+            }
+
+            .hero__actions .button {
+                width: 100%;
+            }
+
+            .metric,
+            .services,
+            .values,
+            .role-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 70px 0;
+            }
+
+            .service,
+            .value,
+            .edge,
+            .role,
+            .culture-copy,
+            .about-card {
+                padding: 24px;
+            }
+
+            .standard {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
-
-    <!-- NAVIGATION -->
-    <nav id="navbar">
-        <div class="nav-inner">
-            <a href="#" class="logo">
-                <div class="logo-icon">改</div>
-                KAIZEN
+    <header class="nav" id="nav">
+        <div class="container nav__inner">
+            <a class="brand" href="#home" aria-label="Kaizen home">
+                <span class="brand__mark">K</span>
+                <span>Kaizen</span>
             </a>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#services" data-i18n="nav.services">Services</a></li>
-                <li><a href="#about" data-i18n="nav.about">About</a></li>
-                <li><a href="#global" data-i18n="nav.global">Global</a></li>
-                <li><a href="#process" data-i18n="nav.process">Process</a></li>
-                <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
-            </ul>
-            <div class="nav-right">
-                <div class="lang-selector" id="langSelector">
-                    <div class="lang-current" id="langCurrent">
-                        <span>🌐</span>
-                        <span id="langLabel">EN</span>
-                        <span style="font-size:0.6rem">▼</span>
-                    </div>
-                    <div class="lang-dropdown" id="langDropdown">
-                        <div class="lang-option active" data-lang-code="en">🇺🇸 English</div>
-                        <div class="lang-option" data-lang-code="vi">🇻🇳 Tiếng Việt</div>
-                        <div class="lang-option" data-lang-code="km">🇰🇭 ភាសាខ្មែរ</div>
-                        <div class="lang-option" data-lang-code="pt-br">🇧🇷 Português</div>
-                        <div class="lang-option" data-lang-code="th">🇹🇭 ภาษาไทย</div>
-                    </div>
-                </div>
-                <a href="#contact" class="btn-primary" data-i18n="nav.cta">Get a Quote</a>
-            </div>
-            <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
-                <span></span><span></span><span></span>
-            </button>
-        </div>
-    </nav>
-
-    <!-- HERO -->
-    <section class="hero" id="hero">
-        <div class="hero-grid"></div>
-        <div class="hero-glow hero-glow-1"></div>
-        <div class="hero-glow hero-glow-2"></div>
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <span class="hero-badge-dot"></span>
-                    <span data-i18n="hero.badge">Cocos Engine Specialists</span>
-                </div>
-                <h1 data-i18n="hero.title">
-                    Your Game,<br>
-                    <span class="highlight" data-i18n="hero.titleHighlight">Every Language.</span>
-                </h1>
-                <p class="hero-subtitle" data-i18n="hero.subtitle">
-                    We localize Cocos engine games with native precision — translation, QA testing, voice-over, subtitles, and UI/UX adaptation for markets worldwide.
-                </p>
-                <div class="hero-actions">
-                    <a href="#contact" class="btn-primary" data-i18n="hero.cta">Start Your Project →</a>
-                    <a href="#services" class="btn-outline" data-i18n="hero.cta2">Explore Services</a>
-                </div>
-                <div class="hero-stats">
-                    <div>
-                        <div class="hero-stat-value">50+</div>
-                        <div class="hero-stat-label" data-i18n="hero.stat1">Localization Experts</div>
-                    </div>
-                    <div>
-                        <div class="hero-stat-value">20+</div>
-                        <div class="hero-stat-label" data-i18n="hero.stat2">Languages Supported</div>
-                    </div>
-                    <div>
-                        <div class="hero-stat-value">4</div>
-                        <div class="hero-stat-label" data-i18n="hero.stat3">Global Offices</div>
-                    </div>
-                    <div>
-                        <div class="hero-stat-value">2+</div>
-                        <div class="hero-stat-label" data-i18n="hero.stat4">Years in Game Loc</div>
-                    </div>
-                </div>
+            <nav class="nav__links" id="navLinks" aria-label="Primary navigation">
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#about">About Us</a>
+                <a href="#why-us">Why Us</a>
+                <a href="#careers">Join Us</a>
+                <a href="#open-positions">Open Positions</a>
+            </nav>
+            <div class="nav__actions">
+                <span class="lang">EN</span>
+                <a class="button" href="#contact">Contact Us</a>
+                <button class="menu" id="menuButton" type="button" aria-label="Open menu" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </div>
-    </section>
+    </header>
 
-    <!-- SERVICES -->
-    <section id="services">
-        <div class="container">
-            <div class="section-label" data-i18n="services.label">What We Do</div>
-            <h2 data-i18n="services.title">Full-Spectrum Game Localization</h2>
-            <p style="color:var(--color-text-muted);max-width:560px;margin-top:0.75rem" data-i18n="services.subtitle">
-                From first string to final build — every pixel, every voice line, every UI element adapted for your target market.
-            </p>
-            <div class="services-grid">
-                <div class="service-card fade-up">
-                    <div class="service-icon">🌐</div>
-                    <h3 data-i18n="services.s1.title">Translation &amp; Transcreation</h3>
-                    <p data-i18n="services.s1.desc">Native linguists translate in-game text, dialogues, and lore with cultural context — not just word-for-word, but feel-for-feel.</p>
-                </div>
-                <div class="service-card fade-up">
-                    <div class="service-icon">🔍</div>
-                    <h3 data-i18n="services.s2.title">QA Testing</h3>
-                    <p data-i18n="services.s2.desc">Linguistic and functional QA to catch truncation, encoding bugs, context errors, and cultural mismatches before release.</p>
-                </div>
-                <div class="service-card fade-up">
-                    <div class="service-icon">🎭</div>
-                    <h3 data-i18n="services.s3.title">Culturalization</h3>
-                    <p data-i18n="services.s3.desc">Adapt visuals, symbols, colors, and narratives to resonate with local audiences while respecting cultural sensitivities.</p>
-                </div>
-                <div class="service-card fade-up">
-                    <div class="service-icon">🎙️</div>
-                    <h3 data-i18n="services.s4.title">Voice-Over</h3>
-                    <p data-i18n="services.s4.desc">Professional voice casting, recording, and mixing in 20+ languages. From character voices to narration and UI audio.</p>
-                </div>
-                <div class="service-card fade-up">
-                    <div class="service-icon">💬</div>
-                    <h3 data-i18n="services.s5.title">Subtitles &amp; Captioning</h3>
-                    <p data-i18n="services.s5.desc">Timed subtitles and closed captions for cutscenes, trailers, and in-game dialogue — synced and styled for each locale.</p>
-                </div>
-                <div class="service-card fade-up">
-                    <div class="service-icon">🎨</div>
-                    <h3 data-i18n="services.s6.title">UI/UX Localization</h3>
-                    <p data-i18n="services.s6.desc">Adapt layouts, typography, and interactive elements for RTL scripts, CJK characters, and varying text lengths across languages.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" style="background:var(--color-surface)">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-visual fade-up">
-                    <div class="about-visual-inner">
-                        <div class="kaizen-kanji">改善</div>
-                        <div class="kaizen-meaning">KAIZEN</div>
-                        <div class="kaizen-sub" data-i18n="about.kanji">Continuous Improvement</div>
-                    </div>
-                </div>
-                <div class="about-content fade-up">
-                    <div class="section-label" data-i18n="about.label">About Us</div>
-                    <h2 data-i18n="about.title">Built by Localizers,<br>for Game Developers</h2>
-                    <p data-i18n="about.p1">
-                        Kaizen was founded in 2026 by a team that had already spent two years deep in game localization — shipping titles, crunching QA, and learning what makes players in São Paulo feel as immersed as players in Ho Chi Minh City.
+    <main>
+        <section class="hero" id="home">
+            <div class="container hero__grid">
+                <div>
+                    <div class="eyebrow reveal">The Architectural Globalist</div>
+                    <h1 class="reveal" data-delay="1">Kaizen Software</h1>
+                    <p class="hero__copy reveal" data-delay="2">
+                        Helping businesses communicate in multiple languages. We offer translation and localization services for software, apps, and digital products, with an emphasis on clarity, consistency, and genuine user understanding.
                     </p>
-                    <p data-i18n="about.p2">
-                        Today, with 50 specialists across four countries, we focus exclusively on Cocos engine games. That specialization means we know the engine's quirks, its file formats, its rendering pipeline — and we build our tools around them.
+                    <div class="hero__actions reveal" data-delay="3">
+                        <a class="button" href="#services">Explore with us</a>
+                        <a class="button button--light" href="#careers">Work with us</a>
+                    </div>
+                </div>
+                <aside class="hero__card float reveal" data-delay="2" aria-label="Kaizen snapshot">
+                    <div class="metric">
+                        <div>
+                            <strong>24+</strong>
+                            <span>Languages mastered</span>
+                        </div>
+                        <div>
+                            <strong>12+</strong>
+                            <span>Countries present</span>
+                        </div>
+                        <div>
+                            <strong>20+</strong>
+                            <span>Language coverage</span>
+                        </div>
+                        <div>
+                            <strong>400%</strong>
+                            <span>Growth visibility index</span>
+                        </div>
+                    </div>
+                    <p>
+                        Professional translation and localization for software and digital products, based in Ho Chi Minh City, Vietnam.
                     </p>
-                    <div class="about-features">
-                        <div class="about-feature">
-                            <div class="about-feature-icon">⚡</div>
-                            <div class="about-feature-text">
-                                <h4 data-i18n="about.f1.title">Cocos-Native Workflow</h4>
-                                <p data-i18n="about.f1.desc">Tools built for Cocos file formats</p>
+                </aside>
+            </div>
+        </section>
+
+        <section id="services">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div class="eyebrow">Core Services</div>
+                    <div>
+                        <h2>Clear content for global software products.</h2>
+                        <p>
+                            We do not just translate content. We adapt it for real users so your product is clear, natural, and ready for global markets.
+                        </p>
+                    </div>
+                </div>
+                <div class="services">
+                    <article class="service reveal">
+                        <span class="number">01</span>
+                        <h3>Translation</h3>
+                        <p>Accurate translation for software, applications, and digital content. Focused on meaning, clarity, and consistency across all materials.</p>
+                    </article>
+                    <article class="service reveal" data-delay="1">
+                        <span class="number">02</span>
+                        <h3>Localization</h3>
+                        <p>Adapting content to match local language, tone, and user expectations, including UI text, in-product content, and user experience.</p>
+                    </article>
+                    <article class="service reveal" data-delay="2">
+                        <span class="number">03</span>
+                        <h3>Global Solutions</h3>
+                        <p>Support for companies entering new markets. We help manage multilingual content and maintain consistency at scale.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="about" id="about">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div class="eyebrow">Who Are We</div>
+                    <div>
+                        <h2>We are Kaizen, a software translation and localization company based in Vietnam.</h2>
+                        <p>
+                            We help Vietnamese and international businesses expand their software products to the global market through accurate translation and in-depth localization, delivering a natural and native-like experience to users in over 30 languages.
+                        </p>
+                    </div>
+                </div>
+                <div class="about__grid">
+                    <article class="about-card reveal">
+                        <strong>24+</strong>
+                        <h3>Languages Mastered</h3>
+                        <p>Coverage built for software, apps, and digital products that need practical multilingual support.</p>
+                    </article>
+                    <article class="about-card reveal" data-delay="1">
+                        <h3>Our Mission</h3>
+                        <p>Delivering accurate translation with real cultural understanding by combining precise language with practical localization.</p>
+                    </article>
+                    <article class="about-card reveal" data-delay="2">
+                        <h3>Our Vision</h3>
+                        <p>To be a trustworthy language partner for businesses that are expanding into new markets.</p>
+                    </article>
+                    <article class="about-card reveal" data-delay="3">
+                        <h3>What We Handle</h3>
+                        <p>Accurate translation, cultural adaptation, and quality assurance for content that has to be correct, natural, and consistent.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="values">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div class="eyebrow">Our Core Values</div>
+                    <div>
+                        <h2>The foundation of our work.</h2>
+                        <p>Every project is shaped by accuracy, clarity, consistency, and reliability.</p>
+                    </div>
+                </div>
+                <div class="values">
+                    <article class="value reveal">
+                        <span class="number">01</span>
+                        <h3>Accuracy</h3>
+                        <p>We focus on correct meaning, terminology, and context in every translation.</p>
+                    </article>
+                    <article class="value reveal" data-delay="1">
+                        <span class="number">02</span>
+                        <h3>Clarity</h3>
+                        <p>Content is easy to understand and natural for the target audience.</p>
+                    </article>
+                    <article class="value reveal" data-delay="2">
+                        <span class="number">03</span>
+                        <h3>Consistency</h3>
+                        <p>We keep terminology and tone aligned across your entire product.</p>
+                    </article>
+                    <article class="value reveal" data-delay="3">
+                        <span class="number">04</span>
+                        <h3>Reliability</h3>
+                        <p>On-time delivery and stable quality you can depend on.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="why-us">
+            <div class="container split">
+                <div class="image-panel reveal" aria-label="Kaizen team workspace"></div>
+                <div class="reveal" data-delay="1">
+                    <div class="eyebrow">Competitive Edge</div>
+                    <div class="section-head" style="display:block;margin:18px 0 28px">
+                        <h2>Why us?</h2>
+                        <p>
+                            Our translators understand both language and context, especially for digital products. We use structured workflows to keep quality stable as your product grows.
+                        </p>
+                    </div>
+                    <div class="edges">
+                        <article class="edge">
+                            <span class="edge__icon">LE</span>
+                            <div>
+                                <h3>Language Expertise</h3>
+                                <p>Translators who understand context, terminology, and the way users experience digital products.</p>
                             </div>
+                        </article>
+                        <article class="edge">
+                            <span class="edge__icon">SP</span>
+                            <div>
+                                <h3>Structured Process</h3>
+                                <p>Clear workflows, review steps, and terminology alignment across every project.</p>
+                            </div>
+                        </article>
+                        <article class="edge">
+                            <span class="edge__icon">LS</span>
+                            <div>
+                                <h3>Long-term Support</h3>
+                                <p>Ongoing translation and localization support as product content changes over time.</p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="standards reveal" data-delay="2">
+                        <div class="standard">
+                            <span>Translation Quality</span>
+                            <div class="bar"><span style="width: 96%"></span></div>
+                            <strong>High</strong>
                         </div>
-                        <div class="about-feature">
-                            <div class="about-feature-icon">🌍</div>
-                            <div class="about-feature-text">
-                                <h4 data-i18n="about.f2.title">Native Speakers</h4>
-                                <p data-i18n="about.f2.desc">Every language staffed by natives</p>
-                            </div>
+                        <div class="standard">
+                            <span>Language Coverage</span>
+                            <div class="bar"><span style="width: 84%"></span></div>
+                            <strong>20+</strong>
                         </div>
-                        <div class="about-feature">
-                            <div class="about-feature-icon">🔒</div>
-                            <div class="about-feature-text">
-                                <h4 data-i18n="about.f3.title">NDA Compliant</h4>
-                                <p data-i18n="about.f3.desc">Enterprise-grade confidentiality</p>
-                            </div>
-                        </div>
-                        <div class="about-feature">
-                            <div class="about-feature-icon">📊</div>
-                            <div class="about-feature-text">
-                                <h4 data-i18n="about.f4.title">Scalable Team</h4>
-                                <p data-i18n="about.f4.desc">From indie to AAA capacity</p>
-                            </div>
+                        <div class="standard">
+                            <span>Review Process</span>
+                            <div class="bar"><span style="width: 90%"></span></div>
+                            <strong>Multi-step</strong>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- GLOBAL PRESENCE -->
-    <section id="global" class="global-section">
-        <div class="container">
-            <div class="section-label" data-i18n="global.label">Global Presence</div>
-            <h2 data-i18n="global.title">Four Offices, One Standard</h2>
-            <p style="color:var(--color-text-muted);max-width:560px;margin-top:0.75rem" data-i18n="global.subtitle">
-                Strategically located across Southeast Asia, South America, and beyond — covering every major gaming timezone.
-            </p>
-            <div class="global-grid">
-                <div class="global-card fade-up">
-                    <div class="global-card-flag">🇻🇳</div>
-                    <h3 data-i18n="global.vn.name">Vietnam</h3>
-                    <div class="global-city" data-i18n="global.vn.city">Ho Chi Minh City</div>
-                    <p data-i18n="global.vn.desc">Headquarters. Core localization team and project management hub for APAC operations.</p>
-                    <span class="global-card-tag" data-i18n="global.vn.tag">HQ</span>
-                </div>
-                <div class="global-card fade-up">
-                    <div class="global-card-flag">🇰🇭</div>
-                    <h3 data-i18n="global.km.name">Cambodia</h3>
-                    <div class="global-city" data-i18n="global.km.city">Phnom Penh</div>
-                    <p data-i18n="global.km.desc">Southeast Asian language specialists and culturalization team for the ASEAN market.</p>
-                    <span class="global-card-tag" data-i18n="global.km.tag">ASEAN Hub</span>
-                </div>
-                <div class="global-card fade-up">
-                    <div class="global-card-flag">🇧🇷</div>
-                    <h3 data-i18n="global.br.name">Brazil</h3>
-                    <div class="global-city" data-i18n="global.br.city">São Paulo</div>
-                    <p data-i18n="global.br.desc">LATAM localization center. Portuguese and Spanish voice-over studio with native talent.</p>
-                    <span class="global-card-tag" data-i18n="global.br.tag">LATAM Hub</span>
-                </div>
-                <div class="global-card fade-up">
-                    <div class="global-card-flag">🇹🇭</div>
-                    <h3 data-i18n="global.th.name">Thailand</h3>
-                    <div class="global-city" data-i18n="global.th.city">Bangkok</div>
-                    <p data-i18n="global.th.desc">Thai and regional language support. QA testing center for mobile game localization.</p>
-                    <span class="global-card-tag" data-i18n="global.th.tag">QA Center</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PROCESS -->
-    <section id="process">
-        <div class="container">
-            <div style="text-align:center">
-                <div class="section-label" style="justify-content:center" data-i18n="process.label">How We Work</div>
-                <h2 data-i18n="process.title">From Brief to Build, Seamlessly</h2>
-                <p style="color:var(--color-text-muted);max-width:480px;margin:0.75rem auto 0" data-i18n="process.subtitle">
-                    A proven four-stage pipeline that keeps your project on time and on quality.
-                </p>
-            </div>
-            <div class="process-steps">
-                <div class="process-step fade-up">
-                    <div class="process-step-num">01</div>
-                    <h3 data-i18n="process.s1.title">Discovery</h3>
-                    <p data-i18n="process.s1.desc">We audit your game files, define scope, identify target locales, and align on style guides and glossaries.</p>
-                </div>
-                <div class="process-step fade-up">
-                    <div class="process-step-num">02</div>
-                    <h3 data-i18n="process.s2.title">Localization</h3>
-                    <p data-i18n="process.s2.desc">Native translators work in context. Voice actors record. Subtitles are timed. UI is adapted — all in parallel.</p>
-                </div>
-                <div class="process-step fade-up">
-                    <div class="process-step-num">03</div>
-                    <h3 data-i18n="process.s3.title">QA &amp; Testing</h3>
-                    <p data-i18n="process.s3.desc">Linguistic review, functional testing on target devices, cultural validation, and final polish.</p>
-                </div>
-                <div class="process-step fade-up">
-                    <div class="process-step-num">04</div>
-                    <h3 data-i18n="process.s4.title">Delivery</h3>
-                    <p data-i18n="process.s4.desc">Final assets delivered in your preferred format. Post-launch support and iterative updates available.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- TECH STACK -->
-    <section style="background:var(--color-surface)">
-        <div class="container">
-            <div style="text-align:center">
-                <div class="section-label" style="justify-content:center" data-i18n="tech.label">Our Edge</div>
-                <h2 data-i18n="tech.title">Built for Cocos, From Day One</h2>
-                <p style="color:var(--color-text-muted);max-width:480px;margin:0.75rem auto 0" data-i18n="tech.subtitle">
-                    We don't just localize games — we understand the engine they're built on.
-                </p>
-            </div>
-            <div class="tech-grid">
-                <div class="tech-card fade-up">
-                    <div class="tech-card-icon">⚙️</div>
-                    <h3 data-i18n="tech.t1.title">Cocos Engine Expertise</h3>
-                    <p data-i18n="tech.t1.desc">Deep knowledge of Cocos Creator, Cocos2d-x, and their asset pipelines. We handle .fire, .prefab, and scene files natively.</p>
-                    <div class="tech-tags">
-                        <span class="tech-tag">Cocos Creator</span>
-                        <span class="tech-tag">Cocos2d-x</span>
-                        <span class="tech-tag">Cocos2d-html5</span>
+        <section class="careers" id="careers">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div class="eyebrow">Join the team</div>
+                    <div>
+                        <h2>Join Kaizen. Let's Kaizen together.</h2>
+                        <p>
+                            Looking for a place where you can work seriously on international software projects, but still have fun, creativity, and great vibes every day?
+                        </p>
                     </div>
                 </div>
-                <div class="tech-card fade-up">
-                    <div class="tech-card-icon">🔧</div>
-                    <h3 data-i18n="tech.t2.title">Custom Tooling</h3>
-                    <p data-i18n="tech.t2.desc">Proprietary extraction and injection tools for Cocos string tables, ensuring zero data loss and format integrity.</p>
-                    <div class="tech-tags">
-                        <span class="tech-tag">String Extraction</span>
-                        <span class="tech-tag">Auto-Injection</span>
-                        <span class="tech-tag">Encoding Fix</span>
-                    </div>
+                <div class="culture-grid">
+                    <article class="culture-copy reveal">
+                        <h3>More than translation.</h3>
+                        <p>
+                            By delivering comprehensive translation and localization solutions for software, Kaizen empowers businesses to expand their products globally.
+                        </p>
+                        <p>
+                            We make projects run smoothly and create natural, engaging experiences in international markets by combining precise language with cultural insight.
+                        </p>
+                    </article>
+                    <div class="culture-photo reveal" data-delay="1" aria-label="Collaborative Kaizen team"></div>
                 </div>
-                <div class="tech-card fade-up">
-                    <div class="tech-card-icon">📱</div>
-                    <h3 data-i18n="tech.t3.title">Mobile-First QA</h3>
-                    <p data-i18n="tech.t3.desc">Device lab covering iOS, Android, and Web builds. We test on real devices, not just emulators.</p>
-                    <div class="tech-tags">
-                        <span class="tech-tag">iOS</span>
-                        <span class="tech-tag">Android</span>
-                        <span class="tech-tag">Web</span>
-                        <span class="tech-tag">Real Devices</span>
-                    </div>
+                <div class="values">
+                    <article class="value reveal">
+                        <span class="number">Culture</span>
+                        <h3>More than translation</h3>
+                        <p>A team that treats localization as product communication, not just language conversion.</p>
+                    </article>
+                    <article class="value reveal" data-delay="1">
+                        <span class="number">12+</span>
+                        <h3>Countries present</h3>
+                        <p>Multicultural work connected to real international product needs.</p>
+                    </article>
+                    <article class="value reveal" data-delay="2">
+                        <span class="number">Growth</span>
+                        <h3>Innovative Growth</h3>
+                        <p>Where talent grows and thrives through serious work on global software projects.</p>
+                    </article>
+                    <article class="value reveal" data-delay="3">
+                        <span class="number">Team</span>
+                        <h3>Inclusive Environment</h3>
+                        <p>A multicultural environment that respects differences and practical collaboration.</p>
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- CTA -->
-    <section class="cta-section">
-        <div class="container">
-            <h2 data-i18n="cta.title">Ready to Go Global?</h2>
-            <p data-i18n="cta.subtitle">
-                Let's talk about your game. We'll build a localization plan that fits your timeline, budget, and target markets.
-            </p>
-            <div class="cta-actions">
-                <a href="#contact" class="btn-primary" data-i18n="cta.btn">Get a Free Consultation →</a>
-                <a href="#services" class="btn-outline" data-i18n="cta.btn2">View All Services</a>
+        <section id="open-positions">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div class="eyebrow">Recruitment</div>
+                    <div>
+                        <h2>Open positions.</h2>
+                        <p>
+                            We are a translation and localization team based in Ho Chi Minh City, always looking for talented, passionate people who want to help bring Vietnamese software to the world.
+                        </p>
+                    </div>
+                </div>
+                <div class="role-grid">
+                    <article class="role reveal">
+                        <span class="number">Full Time</span>
+                        <h3>Project Management</h3>
+                        <p>Coordinate localization projects, timelines, quality checks, and client communication.</p>
+                        <div class="role__meta">
+                            <span class="pill">VP6</span>
+                            <span class="pill">PM</span>
+                            <span class="pill">HCM City</span>
+                        </div>
+                        <a href="mailto:mail@kaizenvn.live?subject=Project%20Management%20Application">Apply now</a>
+                    </article>
+                    <article class="role reveal" data-delay="1">
+                        <span class="number">Full Time</span>
+                        <h3>QA Art</h3>
+                        <p>Review localized content, visual consistency, layout behavior, and product readiness.</p>
+                        <div class="role__meta">
+                            <span class="pill">VP6</span>
+                            <span class="pill">QA</span>
+                            <span class="pill">HCM City</span>
+                        </div>
+                        <a href="mailto:mail@kaizenvn.live?subject=QA%20Art%20Application">Apply now</a>
+                    </article>
+                    <article class="role reveal" data-delay="2">
+                        <span class="number">Full Time</span>
+                        <h3>QC Game</h3>
+                        <p>Check translated product content for clarity, context, correctness, and user experience.</p>
+                        <div class="role__meta">
+                            <span class="pill">VP6</span>
+                            <span class="pill">QC</span>
+                            <span class="pill">HCM City</span>
+                        </div>
+                        <a href="mailto:mail@kaizenvn.live?subject=QC%20Game%20Application">Apply now</a>
+                    </article>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- CONTACT -->
-    <section id="contact" style="background:var(--color-surface)">
-        <div class="container">
-            <div class="section-label" data-i18n="contact.label">Get in Touch</div>
-            <h2 data-i18n="contact.title">Let's Build Something Together</h2>
-            <div class="contact-grid">
-                <div class="contact-info fade-up">
-                    <p data-i18n="contact.desc">
-                        Whether you're launching a new title or expanding an existing game to new markets, we're here to help. Reach out and our team will get back to you within 24 hours.
+        <section class="cta" id="contact">
+            <div class="container cta__inner">
+                <div class="reveal">
+                    <h2>Ready to let the world know about your product?</h2>
+                    <p>
+                        Start a project, ask about localization support, or join us as a Kaizener.
                     </p>
-                    <div class="contact-methods">
-                        <div class="contact-method">
-                            <div class="contact-method-icon">📧</div>
-                            <div>
-                                <h4>Email</h4>
-                                <p>hello@kaizen-localization.com</p>
-                            </div>
-                        </div>
-                        <div class="contact-method">
-                            <div class="contact-method-icon">💼</div>
-                            <div>
-                                <h4 data-i18n="contact.business">Business Hours</h4>
-                                <p data-i18n="contact.hours">Mon–Fri, 9:00–18:00 (GMT+7)</p>
-                            </div>
-                        </div>
-                        <div class="contact-method">
-                            <div class="contact-method-icon">🌏</div>
-                            <div>
-                                <h4 data-i18n="contact.response">Response Time</h4>
-                                <p data-i18n="contact.responseTime">Within 24 hours</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-                <form class="contact-form fade-up" onsubmit="handleSubmit(event)">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label data-i18n="contact.form.name">Name</label>
-                            <input type="text" placeholder="Your name" required>
-                        </div>
-                        <div class="form-group">
-                            <label data-i18n="contact.form.company">Company</label>
-                            <input type="text" placeholder="Company name">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label data-i18n="contact.form.email">Email</label>
-                        <input type="email" placeholder="you@company.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label data-i18n="contact.form.service">Service Needed</label>
-                        <select>
-                            <option value="" data-i18n="contact.form.select">Select a service...</option>
-                            <option value="translation" data-i18n="services.s1.title">Translation &amp; Transcreation</option>
-                            <option value="qa" data-i18n="services.s2.title">QA Testing</option>
-                            <option value="culturalization" data-i18n="services.s3.title">Culturalization</option>
-                            <option value="voiceover" data-i18n="services.s4.title">Voice-Over</option>
-                            <option value="subtitles" data-i18n="services.s5.title">Subtitles &amp; Captioning</option>
-                            <option value="uiux" data-i18n="services.s6.title">UI/UX Localization</option>
-                            <option value="full" data-i18n="contact.form.fullPackage">Full Localization Package</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label data-i18n="contact.form.message">Project Details</label>
-                        <textarea placeholder="Tell us about your game, target languages, and timeline..." data-i18n-placeholder="contact.form.placeholder"></textarea>
-                    </div>
-                    <button type="submit" class="btn-primary form-submit" data-i18n="contact.form.submit">Send Inquiry →</button>
-                </form>
+                <a class="button reveal" data-delay="1" href="mailto:mail@kaizenvn.live">Contact Us</a>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="container">
-            <div class="footer-inner">
-                <div class="footer-left">
-                    <a href="#" class="logo" style="font-size:1.25rem">
-                        <div class="logo-icon" style="width:28px;height:28px;font-size:0.85rem">改</div>
-                        KAIZEN
-                    </a>
-                    <p data-i18n="footer.copy">© 2026 Kaizen Localization. All rights reserved.</p>
-                </div>
-                <div class="footer-links">
-                    <a href="#services" data-i18n="nav.services">Services</a>
-                    <a href="#about" data-i18n="nav.about">About</a>
-                    <a href="#global" data-i18n="nav.global">Global</a>
-                    <a href="#contact" data-i18n="nav.contact">Contact</a>
-                </div>
+    <footer class="footer">
+        <div class="container footer__inner">
+            <div>
+                <a class="brand" href="#home">
+                    <span class="brand__mark">K</span>
+                    <span>Kaizen</span>
+                </a>
+                <p>Professional translation and localization for software and digital products. We help your content stay clear, consistent, and natural across every language.</p>
+            </div>
+            <div class="contact-list">
+                <span>HCM City, Vietnam</span>
+                <a href="mailto:mail@kaizenvn.live">mail@kaizenvn.live</a>
+                <span>© 2026 Kaizen</span>
             </div>
         </div>
     </footer>
 
     <script>
-    // ===== TRANSLATIONS =====
-    const translations = {
-        en: {
-            "nav.services": "Services",
-            "nav.about": "About",
-            "nav.global": "Global",
-            "nav.process": "Process",
-            "nav.contact": "Contact",
-            "nav.cta": "Get a Quote",
-            "hero.badge": "Cocos Engine Specialists",
-            "hero.title": "Your Game,",
-            "hero.titleHighlight": "Every Language.",
-            "hero.subtitle": "We localize Cocos engine games with native precision — translation, QA testing, voice-over, subtitles, and UI/UX adaptation for markets worldwide.",
-            "hero.cta": "Start Your Project →",
-            "hero.cta2": "Explore Services",
-            "hero.stat1": "Localization Experts",
-            "hero.stat2": "Languages Supported",
-            "hero.stat3": "Global Offices",
-            "hero.stat4": "Years in Game Loc",
-            "services.label": "What We Do",
-            "services.title": "Full-Spectrum Game Localization",
-            "services.subtitle": "From first string to final build — every pixel, every voice line, every UI element adapted for your target market.",
-            "services.s1.title": "Translation & Transcreation",
-            "services.s1.desc": "Native linguists translate in-game text, dialogues, and lore with cultural context — not just word-for-word, but feel-for-feel.",
-            "services.s2.title": "QA Testing",
-            "services.s2.desc": "Linguistic and functional QA to catch truncation, encoding bugs, context errors, and cultural mismatches before release.",
-            "services.s3.title": "Culturalization",
-            "services.s3.desc": "Adapt visuals, symbols, colors, and narratives to resonate with local audiences while respecting cultural sensitivities.",
-            "services.s4.title": "Voice-Over",
-            "services.s4.desc": "Professional voice casting, recording, and mixing in 20+ languages. From character voices to narration and UI audio.",
-            "services.s5.title": "Subtitles & Captioning",
-            "services.s5.desc": "Timed subtitles and closed captions for cutscenes, trailers, and in-game dialogue — synced and styled for each locale.",
-            "services.s6.title": "UI/UX Localization",
-            "services.s6.desc": "Adapt layouts, typography, and interactive elements for RTL scripts, CJK characters, and varying text lengths across languages.",
-            "about.label": "About Us",
-            "about.title": "Built by Localizers,\nfor Game Developers",
-            "about.p1": "Kaizen was founded in 2026 by a team that had already spent two years deep in game localization — shipping titles, crunching QA, and learning what makes players in São Paulo feel as immersed as players in Ho Chi Minh City.",
-            "about.p2": "Today, with 50 specialists across four countries, we focus exclusively on Cocos engine games. That specialization means we know the engine's quirks, its file formats, its rendering pipeline — and we build our tools around them.",
-            "about.kanji": "Continuous Improvement",
-            "about.f1.title": "Cocos-Native Workflow",
-            "about.f1.desc": "Tools built for Cocos file formats",
-            "about.f2.title": "Native Speakers",
-            "about.f2.desc": "Every language staffed by natives",
-            "about.f3.title": "NDA Compliant",
-            "about.f3.desc": "Enterprise-grade confidentiality",
-            "about.f4.title": "Scalable Team",
-            "about.f4.desc": "From indie to AAA capacity",
-            "global.label": "Global Presence",
-            "global.title": "Four Offices, One Standard",
-            "global.subtitle": "Strategically located across Southeast Asia, South America, and beyond — covering every major gaming timezone.",
-            "global.vn.name": "Vietnam",
-            "global.vn.city": "Ho Chi Minh City",
-            "global.vn.desc": "Headquarters. Core localization team and project management hub for APAC operations.",
-            "global.vn.tag": "HQ",
-            "global.km.name": "Cambodia",
-            "global.km.city": "Phnom Penh",
-            "global.km.desc": "Southeast Asian language specialists and culturalization team for the ASEAN market.",
-            "global.km.tag": "ASEAN Hub",
-            "global.br.name": "Brazil",
-            "global.br.city": "São Paulo",
-            "global.br.desc": "LATAM localization center. Portuguese and Spanish voice-over studio with native talent.",
-            "global.br.tag": "LATAM Hub",
-            "global.th.name": "Thailand",
-            "global.th.city": "Bangkok",
-            "global.th.desc": "Thai and regional language support. QA testing center for mobile game localization.",
-            "global.th.tag": "QA Center",
-            "process.label": "How We Work",
-            "process.title": "From Brief to Build, Seamlessly",
-            "process.subtitle": "A proven four-stage pipeline that keeps your project on time and on quality.",
-            "process.s1.title": "Discovery",
-            "process.s1.desc": "We audit your game files, define scope, identify target locales, and align on style guides and glossaries.",
-            "process.s2.title": "Localization",
-            "process.s2.desc": "Native translators work in context. Voice actors record. Subtitles are timed. UI is adapted — all in parallel.",
-            "process.s3.title": "QA & Testing",
-            "process.s3.desc": "Linguistic review, functional testing on target devices, cultural validation, and final polish.",
-            "process.s4.title": "Delivery",
-            "process.s4.desc": "Final assets delivered in your preferred format. Post-launch support and iterative updates available.",
-            "tech.label": "Our Edge",
-            "tech.title": "Built for Cocos, From Day One",
-            "tech.subtitle": "We don't just localize games — we understand the engine they're built on.",
-            "tech.t1.title": "Cocos Engine Expertise",
-            "tech.t1.desc": "Deep knowledge of Cocos Creator, Cocos2d-x, and their asset pipelines. We handle .fire, .prefab, and scene files natively.",
-            "tech.t2.title": "Custom Tooling",
-            "tech.t2.desc": "Proprietary extraction and injection tools for Cocos string tables, ensuring zero data loss and format integrity.",
-            "tech.t3.title": "Mobile-First QA",
-            "tech.t3.desc": "Device lab covering iOS, Android, and Web builds. We test on real devices, not just emulators.",
-            "cta.title": "Ready to Go Global?",
-            "cta.subtitle": "Let's talk about your game. We'll build a localization plan that fits your timeline, budget, and target markets.",
-            "cta.btn": "Get a Free Consultation →",
-            "cta.btn2": "View All Services",
-            "contact.label": "Get in Touch",
-            "contact.title": "Let's Build Something Together",
-            "contact.desc": "Whether you're launching a new title or expanding an existing game to new markets, we're here to help. Reach out and our team will get back to you within 24 hours.",
-            "contact.business": "Business Hours",
-            "contact.hours": "Mon–Fri, 9:00–18:00 (GMT+7)",
-            "contact.response": "Response Time",
-            "contact.responseTime": "Within 24 hours",
-            "contact.form.name": "Name",
-            "contact.form.company": "Company",
-            "contact.form.email": "Email",
-            "contact.form.service": "Service Needed",
-            "contact.form.select": "Select a service...",
-            "contact.form.fullPackage": "Full Localization Package",
-            "contact.form.message": "Project Details",
-            "contact.form.placeholder": "Tell us about your game, target languages, and timeline...",
-            "contact.form.submit": "Send Inquiry →",
-            "footer.copy": "© 2026 Kaizen Localization. All rights reserved."
-        },
-        vi: {
-            "nav.services": "Dịch vụ",
-            "nav.about": "Giới thiệu",
-            "nav.global": "Toàn cầu",
-            "nav.process": "Quy trình",
-            "nav.contact": "Liên hệ",
-            "nav.cta": "Nhận báo giá",
-            "hero.badge": "Chuyên gia Cocos Engine",
-            "hero.title": "Trò chơi của bạn,",
-            "hero.titleHighlight": "Mọi ngôn ngữ.",
-            "hero.subtitle": "Chúng tôi bản địa hóa game Cocos với độ chính xác bản xứ — dịch thuật, QA, lồng tiếng, phụ đề và tối ưu UI/UX cho thị trường toàn cầu.",
-            "hero.cta": "Bắt đầu dự án →",
-            "hero.cta2": "Xem dịch vụ",
-            "hero.stat1": "Chuyên gia bản địa hóa",
-            "hero.stat2": "Ngôn ngữ hỗ trợ",
-            "hero.stat3": "Văn phòng toàn cầu",
-            "hero.stat4": "Năm kinh nghiệm",
-            "services.label": "Dịch vụ",
-            "services.title": "Bản địa hóa game toàn diện",
-            "services.subtitle": "Từ chuỗi ký tự đầu tiên đến bản build cuối cùng — mọi pixel, mọi lời thoại, mọi phần tử UI đều được thích ứng cho thị trường mục tiêu.",
-            "services.s1.title": "Dịch thuật & Sáng tạo",
-            "services.s1.desc": "Người dịch bản xứ dịch văn bản game, hội thoại và cốt truyện với ngữ cảnh văn hóa — không chỉ dịch từng từ, mà truyền tải cảm xúc.",
-            "services.s2.title": "Kiểm thử QA",
-            "services.s2.desc": "QA ngôn ngữ và chức năng để phát hiện lỗi cắt cúp, mã hóa, ngữ cảnh và sai biệt văn hóa trước khi phát hành.",
-            "services.s3.title": "Văn hóa hóa",
-            "services.s3.desc": "Thích ứng hình ảnh, biểu tượng, màu sắc và câu chuyện để phù hợp với khán giả địa phương, tôn trọng nhạy cảm văn hóa.",
-            "services.s4.title": "Lồng tiếng",
-            "services.s4.desc": "Tuyển chọn, thu âm và phối giọng chuyên nghiệp bằng hơn 20 ngôn ngữ. Từ giọng nhân vật đến tường thuật và audio UI.",
-            "services.s5.title": "Phụ đề & Viết caption",
-            "services.s5.desc": "Phụ đề có thời gian và caption cho cutscene, trailer và hội thoại trong game — đồng bộ và tạo kiểu cho từng locale.",
-            "services.s6.title": "Bản địa hóa UI/UX",
-            "services.s6.desc": "Thích ứng bố cục, typography và yếu tố tương tác cho script RTL, ký tự CJK và độ dài văn bản khác nhau giữa các ngôn ngữ.",
-            "about.label": "Về chúng tôi",
-            "about.title": "Xây dựng bởi chuyên gia bản địa hóa,\ndành cho nhà phát triển game",
-            "about.p1": "Kaizen được thành lập năm 2026 bởi đội ngũ đã có hai năm kinh nghiệm sâu trong bản địa hóa game — phát hành tựa game, chạy QA và học cách khiến người chơi ở São Paulo cảm thấy đắm chìm như người chơi ở TP.HCM.",
-            "about.p2": "Hiện tại, với 50 chuyên gia tại bốn quốc gia, chúng tôi tập trung hoàn toàn vào game engine Cocos. Sự chuyên biệt đó có nghĩa chúng tôi hiểu rõ engine, định dạng file và pipeline render — và xây dựng công cụ xung quanh chúng.",
-            "about.kanji": "Cải thiện liên tục",
-            "about.f1.title": "Quy trình Cocos-native",
-            "about.f1.desc": "Công cụ xây dựng cho định dạng Cocos",
-            "about.f2.title": "Người bản xứ",
-            "about.f2.desc": "Mỗi ngôn ngữ đều có người bản xứ",
-            "about.f3.title": "Bảo mật NDA",
-            "about.f3.desc": "Bảo mật cấp doanh nghiệp",
-            "about.f4.title": "Đội ngũ linh hoạt",
-            "about.f4.desc": "Từ indie đến AAA",
-            "global.label": "Hiện diện toàn cầu",
-            "global.title": "Bốn văn phòng, một tiêu chuẩn",
-            "global.subtitle": "Hiện diện chiến lược tại Đông Nam Á, Nam Mỹ và hơn thế — bao phủ mọi múi giờ game lớn.",
-            "global.vn.name": "Việt Nam",
-            "global.vn.city": "TP. Hồ Chí Minh",
-            "global.vn.desc": "Trụ sở chính. Đội ngũ bản địa hóa cốt lõi và trung tâm quản lý dự án cho khu vực APAC.",
-            "global.vn.tag": "Trụ sở",
-            "global.km.name": "Campuchia",
-            "global.km.city": "Phnom Penh",
-            "global.km.desc": "Chuyên gia ngôn ngữ Đông Nam Á và đội văn hóa hóa cho thị trường ASEAN.",
-            "global.km.tag": "Trung tâm ASEAN",
-            "global.br.name": "Brazil",
-            "global.br.city": "São Paulo",
-            "global.br.desc": "Trung tâm bản địa hóa LATAM. Studio lồng tiếng Bồ Đào Nha và Tây Ban Nha với tài năng bản xứ.",
-            "global.br.tag": "Trung tâm LATAM",
-            "global.th.name": "Thái Lan",
-            "global.th.city": "Bangkok",
-            "global.th.desc": "Hỗ trợ tiếng Thái và ngôn ngữ khu vực. Trung tâm QA cho bản địa hóa game mobile.",
-            "global.th.tag": "Trung tâm QA",
-            "process.label": "Cách chúng tôi làm việc",
-            "process.title": "Từ brief đến build, liền mạch",
-            "process.subtitle": "Quy trình bốn bước đã được chứng minh, đảm bảo dự án đúng tiến độ và chất lượng.",
-            "process.s1.title": "Khám phá",
-            "process.s1.desc": "Chúng tôi kiểm tra file game, xác định phạm vi, xác định locale mục tiêu và thống nhất style guide cùng thuật ngữ.",
-            "process.s2.title": "Bản địa hóa",
-            "process.s2.desc": "Dịch giả bản xứ làm việc trong ngữ cảnh. Diễn viên lồng tiếng thu âm. Phụ đề được đồng bộ. UI được thích ứng — tất cả song song.",
-            "process.s3.title": "QA & Kiểm thử",
-            "process.s3.desc": "Đánh giá ngôn ngữ, kiểm thử chức năng trên thiết bị mục tiêu, xác nhận văn hóa và hoàn thiện cuối cùng.",
-            "process.s4.title": "Bàn giao",
-            "process.s4.desc": "Tài sản cuối cùng được giao theo định dạng bạn yêu cầu. Hỗ trợ sau phát hành và cập nhật lặp lại.",
-            "tech.label": "Lợi thế",
-            "tech.title": "Xây dựng cho Cocos, từ ngày đầu",
-            "tech.subtitle": "Chúng tôi không chỉ bản địa hóa game — chúng tôi hiểu engine mà game được xây dựng trên.",
-            "tech.t1.title": "Chuyên gia Cocos Engine",
-            "tech.t1.desc": "Hiểu sâu Cocos Creator, Cocos2d-x và pipeline tài nguyên. Xử lý file .fire, .prefab và scene gốc.",
-            "tech.t2.title": "Công cụ tùy chỉnh",
-            "tech.t2.desc": "Công cụ trích xuất và chèn độc quyền cho bảng chuỗi Cocos, đảm bảo không mất dữ liệu và toàn vẹn định dạng.",
-            "tech.t3.title": "QA ưu tiên Mobile",
-            "tech.t3.desc": "Phòng lab thiết bị bao phủ iOS, Android và Web. Kiểm thử trên thiết bị thật, không chỉ giả lập.",
-            "cta.title": "Sẵn sàng vươn ra toàn cầu?",
-            "cta.subtitle": "Hãy nói về game của bạn. Chúng tôi sẽ xây dựng kế hoạch bản địa hóa phù hợp với timeline, ngân sách và thị trường mục tiêu.",
-            "cta.btn": "Nhận tư vấn miễn phí →",
-            "cta.btn2": "Xem tất cả dịch vụ",
-            "contact.label": "Liên hệ",
-            "contact.title": "Hãy cùng xây dựng",
-            "contact.desc": "Dù bạn đang phát hành tựa game mới hay mở rộng game hiện có sang thị trường mới, chúng tôi sẵn sàng hỗ trợ. Liên hệ và đội ngũ sẽ phản hồi trong 24 giờ.",
-            "contact.business": "Giờ làm việc",
-            "contact.hours": "Thứ 2–6, 9:00–18:00 (GMT+7)",
-            "contact.response": "Thời gian phản hồi",
-            "contact.responseTime": "Trong vòng 24 giờ",
-            "contact.form.name": "Họ tên",
-            "contact.form.company": "Công ty",
-            "contact.form.email": "Email",
-            "contact.form.service": "Dịch vụ cần tư vấn",
-            "contact.form.select": "Chọn dịch vụ...",
-            "contact.form.fullPackage": "Gói bản địa hóa đầy đủ",
-            "contact.form.message": "Chi tiết dự án",
-            "contact.form.placeholder": "Hãy cho chúng tôi về game của bạn, ngôn ngữ mục tiêu và timeline...",
-            "contact.form.submit": "Gửi yêu cầu →",
-            "footer.copy": "© 2026 Kaizen Localization. Mọi quyền được bảo lưu."
-        },
-        km: {
-            "nav.services": "សេវាកម្ម",
-            "nav.about": "អំពី​ពួក​យើង",
-            "nav.global": "សកល",
-            "nav.process": "ដំណើរការ",
-            "nav.contact": "ទំនាក់ទំនង",
-            "nav.cta": "ទទួលបានសម្រង់តម្លៃ",
-            "hero.badge": "អ្នកជំនាញ Cocos Engine",
-            "hero.title": "ហ្គេមរបស់អ្នក,",
-            "hero.titleHighlight": "គ្រប់ភាសា។",
-            "hero.subtitle": "យើងធ្វើមូលនិធិហ្គេម Cocos ដោយភាពជាក់លាក់ជាតិ — ការបកប្រែ, QA, សំឡេង, ចំណងជើងរង និង UI/UX សម្រាប់ទីផ្សារទូទាំងពិភពលោក។",
-            "hero.cta": "ចាប់ផ្តើមគម្រោង →",
-            "hero.cta2": "មើលសេវាកម្ម",
-            "hero.stat1": "អ្នកជំនាញមូលនិធិ",
-            "hero.stat2": "ភាសាគាំទ្រ",
-            "hero.stat3": "ការិយាល័យសកល",
-            "hero.stat4": "ឆ្នាំបទពិសោធន៍",
-            "services.label": "អ្វីដែលយើងធ្វើ",
-            "services.title": "មូលនិធិហ្គេមពេញលេញ",
-            "services.subtitle": "ពីខ្សែអក្សរដំបូងដល់ការបង្កើតចុងក្រោយ — រាល់ភិចសែល រាល់បន្ទាត់សំឡេង រាល់ធាតុ UI ត្រូវបានសម្របសម្រួល។",
-            "services.s1.title": "ការបកប្រែ & ការបង្កើត",
-            "services.s1.desc": "អ្នកបកប្រែជាតិបកប្រែអត្ថបទក្នុងហ្គេម សន្ទនា និងរឿងរ៉ាវដោយបរិបទវប្បធម៌។",
-            "services.s2.title": "ការសាកល្បង QA",
-            "services.s2.desc": "QA ភាសា និងមុខងារដើម្បីចាប់កំហុសកាត់ កំហុសកូដ និងកំហុសវប្បធម៌មុនពេលចេញផ្សាយ។",
-            "services.s3.title": "វប្បធម៌នីយកម្ម",
-            "services.s3.desc": "សម្របរូបភាព និមិត្តសញ្ញា ពណ៌ និងរឿងរ៉ាវដើម្បីទាក់ទាញទស្សនិកជនមូលដ្ឋាន។",
-            "services.s4.title": "សំឡេងជំនួស",
-            "services.s4.desc": "ការជ្រើសរើសសំឡេង ការថត និងការលាយសំឡេងជំនាញជាង 20 ភាសា។",
-            "services.s5.title": "ចំណងជើងរង",
-            "services.s5.desc": "ចំណងជើងរងមានពេលវេលាសម្រាប់ cutscene និងសន្ទនាក្នុងហ្គេម។",
-            "services.s6.title": "មូលនិធិ UI/UX",
-            "services.s6.desc": "សម្របប្លង់ អក្សរវិទ្យា និងធាតុអន្តរកម្មសម្រាប់ RTL និង CJK។",
-            "about.label": "អំពី​ពួក​យើង",
-            "about.title": "សាងសង់ដោយអ្នកមូលនិធិ,\nសម្រាប់អ្នកអភិវឌ្ឍហ្គេម",
-            "about.p1": "Kaizen ត្រូវបានបង្កើតនៅឆ្នាំ 2026 ដោយក្រុមដែលមានបទពិសោធន៍ពីរឆ្នាំក្នុងមូលនិធិហ្គេម។",
-            "about.p2": "ថ្ងៃនេះ ជាមួយអ្នកជំនាញ 50 នាក់នៅបួនប្រទេស យើងផ្តោតលើហ្គេម Cocos តែប៉ុណ្ណោះ។",
-            "about.kanji": "ការកែលម្អបន្ត",
-            "about.f1.title": "លំហូរ Cocos-native",
-            "about.f1.desc": "ឧបករណ៍សម្រាប់ទម្រង់ឯកសារ Cocos",
-            "about.f2.title": "អ្នកនិយាយជាតិ",
-            "about.f2.desc": "គ្រប់ភាសាមានអ្នកជាតិ",
-            "about.f3.title": "អនុលោម NDA",
-            "about.f3.desc": "ភាពសម្ងាត់កម្រិតសហគ្រាស",
-            "about.f4.title": "ក្រុមអាចធ្វើមាត្រដ្ឋាន",
-            "about.f4.desc": "ពី indie ដល់ AAA",
-            "global.label": "វត្តមានសកល",
-            "global.title": "ការិយាល័យបួន ស្តង់ដារមួយ",
-            "global.subtitle": "មានទីតាំងយុទ្ធសាស្រ្តនៅអាស៊ីអាគ្នេយ៍ អាមេរិកខាងត្បូង និងច្រើនទៀត។",
-            "global.vn.name": "វៀតណាម",
-            "global.vn.city": "ហូជីមិញ",
-            "global.vn.desc": "ទីស្នាក់ការកណ្តាល។ ក្រុមមូលនិធិស្នូល និងមជ្ឈមណ្ឌលគ្រប់គ្រងគម្រោង។",
-            "global.vn.tag": "ទីស្នាក់ការ",
-            "global.km.name": "កម្ពុជា",
-            "global.km.city": "ភ្នំពេញ",
-            "global.km.desc": "អ្នកជំនាញភាសាអាស៊ីអាគ្នេយ៍ និងក្រុមវប្បធម៌នីយកម្ម។",
-            "global.km.tag": "មជ្ឈមណ្ឌលអាស៊ាន",
-            "global.br.name": "ប្រេស៊ីល",
-            "global.br.city": "សូប៉ូឡូ",
-            "global.br.desc": "មជ្ឈមណ្ឌលមូលនិធិ LATAM។ ស្ទូឌីយោសំឡេងព័រទុយហ្គាល់ និងអេស្ប៉ាញ។",
-            "global.br.tag": "មជ្ឈមណ្ឌល LATAM",
-            "global.th.name": "ថៃ",
-            "global.th.city": "បាងកក",
-            "global.th.desc": "ការគាំទ្រភាសាថៃ និងតំបន់។ មជ្ឈមណ្ឌល QA សម្រាប់មូលនិធិហ្គេមទូរស័ព្ទ។",
-            "global.th.tag": "មជ្ឈមណ្ឌល QA",
-            "process.label": "របៀបដែលយើងធ្វើការ",
-            "process.title": "ពីសេចក្តីព្រាងដល់ការបង្កើត ដោយរលូន",
-            "process.subtitle": "ដំណើរការបួនដំណាក់កាលដែលបានបញ្ជាក់។",
-            "process.s1.title": "ការរុករក",
-            "process.s1.desc": "យើងពិនិត្យឯកសារហ្គេម កំណត់វិសាលភាព និងកំណត់ locale គោលដៅ។",
-            "process.s2.title": "មូលនិធិ",
-            "process.s2.desc": "អ្នកបកប្រែជាតិធ្វើការក្នុងបរិបទ។ តារាសំឡេងថត។ ចំណងជើងរងមានពេល។",
-            "process.s3.title": "QA & ការសាកល្បង",
-            "process.s3.desc": "ការពិនិត្យភាសា ការសាកល្បងមុខងារ និងការផ្ទៀងផ្ទាត់វប្បធម៌។",
-            "process.s4.title": "ការប្រគល់",
-            "process.s4.desc": "ទ្រព្យសម្បត្តិចុងក្រោយប្រគល់ក្នុងទម្រង់ដែលអ្នកចូលចិត្ត។",
-            "tech.label": "គុណសម្បត្តិ",
-            "tech.title": "សាងសង់សម្រាប់ Cocos តាំងពីដំបូង",
-            "tech.subtitle": "យើងមិនគ្រាន់តែធ្វើមូលនិធិហ្គេមទេ — យើងយល់ពី engine ដែលវាត្រូវបានសាងសង់។",
-            "tech.t1.title": "អ្នកជំនាញ Cocos Engine",
-            "tech.t1.desc": "ចំណេះដឹងជ្រៅអំពី Cocos Creator, Cocos2d-x និង pipeline ទ្រព្យ។",
-            "tech.t2.title": "ឧបករណ៍ផ្ទាល់ខ្លួន",
-            "tech.t2.desc": "ឧបករណ៍ស្រង់ចេញ និងចាក់បញ្ចូលសម្រាប់តារាងខ្សែអក្សរ Cocos។",
-            "tech.t3.title": "QA ទូរស័ព្ទមុន",
-            "tech.t3.desc": "មន្ទីរពិសោធន៍ឧបករណ៍គ្របដណ្តប់ iOS, Android និង Web។",
-            "cta.title": "រួចរាល់ដើម្បីទៅសកល?",
-            "cta.subtitle": "និយាយអំពីហ្គេមរបស់អ្នក។ យើងនឹងបង្កើតផែនការមូលនិធិ។",
-            "cta.btn": "ទទួលបានការប្រឹក្សាឥតគិតថ្លៃ →",
-            "cta.btn2": "មើលសេវាកម្មទាំងអស់",
-            "contact.label": "ទំនាក់ទំនង",
-            "contact.title": "ចូរសាងសង់អ្វីមួយរួមគ្នា",
-            "contact.desc": "មិនថាអ្នកកំពុងចេញផ្សាយហ្គេមថ្មី ឬពង្រីកហ្គេមដែលមានស្រាប់ យើងនៅទីនេះដើម្បីជួយ។",
-            "contact.business": "ម៉ោងធ្វើការ",
-            "contact.hours": "ចន្ទ–សុក្រ, 9:00–18:00 (GMT+7)",
-            "contact.response": "ពេលវេលាឆ្លើយតប",
-            "contact.responseTime": "ក្នុងរយៈពេល 24 ម៉ោង",
-            "contact.form.name": "ឈ្មោះ",
-            "contact.form.company": "ក្រុមហ៊ុន",
-            "contact.form.email": "អ៊ីមែល",
-            "contact.form.service": "សេវាកម្មដែលត្រូវការ",
-            "contact.form.select": "ជ្រើសរើសសេវាកម្ម...",
-            "contact.form.fullPackage": "កញ្ចប់មូលនិធិពេញលេញ",
-            "contact.form.message": "ព័ត៌មានលម្អិតគម្រោង",
-            "contact.form.placeholder": "ប្រាប់យើងអំពីហ្គេមរបស់អ្នក ភាសាគោលដៅ និងពេលវេលា...",
-            "contact.form.submit": "ផ្ញើសំណួរ →",
-            "footer.copy": "© 2026 Kaizen Localization។ រក្សាសិទ្ធិទាំងអស់។"
-        },
-        "pt-br": {
-            "nav.services": "Serviços",
-            "nav.about": "Sobre",
-            "nav.global": "Global",
-            "nav.process": "Processo",
-            "nav.contact": "Contato",
-            "nav.cta": "Solicitar Orçamento",
-            "hero.badge": "Especialistas em Cocos Engine",
-            "hero.title": "Seu jogo,",
-            "hero.titleHighlight": "todos os idiomas.",
-            "hero.subtitle": "Localizamos jogos Cocos com precisão nativa — tradução, QA, dublagem, legendas e adaptação UI/UX para mercados globais.",
-            "hero.cta": "Iniciar Projeto →",
-            "hero.cta2": "Ver Serviços",
-            "hero.stat1": "Especialistas",
-            "hero.stat2": "Idiomas Suportados",
-            "hero.stat3": "Escritórios Globais",
-            "hero.stat4": "Anos em Loc de Jogos",
-            "services.label": "O Que Fazemos",
-            "services.title": "Localização Completa de Jogos",
-            "services.subtitle": "Da primeira string ao build final — cada pixel, cada fala, cada elemento UI adaptado para seu mercado-alvo.",
-            "services.s1.title": "Tradução & Transcriação",
-            "services.s1.desc": "Linguistas nativos traduzem textos, diálogos e lore com contexto cultural — não palavra por palavra, mas sentimento por sentimento.",
-            "services.s2.title": "Testes QA",
-            "services.s2.desc": "QA linguístico e funcional para detectar truncamento, bugs de encoding, erros de contexto e incompatibilidades culturais.",
-            "services.s3.title": "Culturalização",
-            "services.s3.desc": "Adaptar visuais, símbolos, cores e narrativas para ressoar com públicos locais respeitando sensibilidades culturais.",
-            "services.s4.title": "Dublagem",
-            "services.s4.desc": "Casting, gravação e mixagem profissional de voz em 20+ idiomas. De vozes de personagens a narração e áudio de UI.",
-            "services.s5.title": "Legendas & Captioning",
-            "services.s5.desc": "Legendas sincronizadas para cutscenes, trailers e diálogos do jogo — estilizadas para cada locale.",
-            "services.s6.title": "Localização UI/UX",
-            "services.s6.desc": "Adaptar layouts, tipografia e elementos interativos para scripts RTL, caracteres CJK e diferentes comprimentos de texto.",
-            "about.label": "Sobre Nós",
-            "about.title": "Feito por Localizadores,\npara Desenvolvedores",
-            "about.p1": "A Kaizen foi fundada em 2026 por uma equipe com dois anos de experiência em localização de jogos — lançando títulos, fazendo QA e aprendendo o que faz jogadores em São Paulo se sentirem imersos como jogadores em Ho Chi Minh City.",
-            "about.p2": "Hoje, com 50 especialistas em quatro países, focamos exclusivamente em jogos Cocos. Essa especialização significa que conhecemos as peculiaridades da engine, seus formatos de arquivo e pipeline de renderização.",
-            "about.kanji": "Melhoria Contínua",
-            "about.f1.title": "Workflow Cocos-Native",
-            "about.f1.desc": "Ferramentas para formatos Cocos",
-            "about.f2.title": "Nativos",
-            "about.f2.desc": "Cada idioma com falantes nativos",
-            "about.f3.title": "NDA Compliant",
-            "about.f3.desc": "Confidencialidade empresarial",
-            "about.f4.title": "Equipe Escalável",
-            "about.f4.desc": "De indie a AAA",
-            "global.label": "Presença Global",
-            "global.title": "Quatro Escritórios, Um Padrão",
-            "global.subtitle": "Estrategicamente localizados no Sudeste Asiático, América Latina e além.",
-            "global.vn.name": "Vietnã",
-            "global.vn.city": "Ho Chi Minh City",
-            "global.vn.desc": "Sede. Equipe central de localização e hub de gerenciamento de projetos para APAC.",
-            "global.vn.tag": "Sede",
-            "global.km.name": "Camboja",
-            "global.km.city": "Phnom Penh",
-            "global.km.desc": "Especialistas em idiomas do Sudeste Asiático e equipe de culturalização para o mercado ASEAN.",
-            "global.km.tag": "Hub ASEAN",
-            "global.br.name": "Brasil",
-            "global.br.city": "São Paulo",
-            "global.br.desc": "Centro de localização LATAM. Estúdio de dublagem em português e espanhol com talentos nativos.",
-            "global.br.tag": "Hub LATAM",
-            "global.th.name": "Tailândia",
-            "global.th.city": "Bangkok",
-            "global.th.desc": "Suporte em tailandês e idiomas regionais. Centro de QA para localização de jogos mobile.",
-            "global.th.tag": "Centro QA",
-            "process.label": "Como Trabalhamos",
-            "process.title": "Do Briefing ao Build, Sem Costura",
-            "process.subtitle": "Pipeline comprovado de quatro etapas que mantém seu projeto no prazo e na qualidade.",
-            "process.s1.title": "Descoberta",
-            "process.s1.desc": "Auditamos seus arquivos, definimos escopo, identificamos locales-alvo e alinhamos guias de estilo.",
-            "process.s2.title": "Localização",
-            "process.s2.desc": "Tradutores nativos trabalham em contexto. Atores de voz gravam. Legendas são sincronizadas. UI é adaptada — tudo em paralelo.",
-            "process.s3.title": "QA & Testes",
-            "process.s3.desc": "Revisão linguística, testes funcionais em dispositivos-alvo, validação cultural e polimento final.",
-            "process.s4.title": "Entrega",
-            "process.s4.desc": "Ativos finais entregues no formato preferido. Suporte pós-lançamento e atualizações iterativas disponíveis.",
-            "tech.label": "Nossa Vantagem",
-            "tech.title": "Feito para Cocos, Desde o Dia Um",
-            "tech.subtitle": "Não apenas localizamos jogos — entendemos a engine em que são construídos.",
-            "tech.t1.title": "Expertise em Cocos Engine",
-            "tech.t1.desc": "Conhecimento profundo de Cocos Creator, Cocos2d-x e seus pipelines de assets.",
-            "tech.t2.title": "Ferramentas Customizadas",
-            "tech.t2.desc": "Ferramentas proprietárias de extração e injeção para tabelas de strings Cocos.",
-            "tech.t3.title": "QA Mobile-First",
-            "tech.t3.desc": "Lab de dispositivos cobrindo iOS, Android e Web. Testamos em dispositivos reais.",
-            "cta.title": "Pronto para o Global?",
-            "cta.subtitle": "Vamos falar sobre seu jogo. Construiremos um plano de localização que se encaixa no seu cronograma e orçamento.",
-            "cta.btn": "Consulta Gratuita →",
-            "cta.btn2": "Ver Todos os Serviços",
-            "contact.label": "Fale Conosco",
-            "contact.title": "Vamos Construir Algo Juntos",
-            "contact.desc": "Seja lançando um novo título ou expandindo um jogo existente para novos mercados, estamos aqui para ajudar.",
-            "contact.business": "Horário Comercial",
-            "contact.hours": "Seg–Sex, 9:00–18:00 (GMT+7)",
-            "contact.response": "Tempo de Resposta",
-            "contact.responseTime": "Em até 24 horas",
-            "contact.form.name": "Nome",
-            "contact.form.company": "Empresa",
-            "contact.form.email": "Email",
-            "contact.form.service": "Serviço Necessário",
-            "contact.form.select": "Selecione um serviço...",
-            "contact.form.fullPackage": "Pacote Completo de Localização",
-            "contact.form.message": "Detalhes do Projeto",
-            "contact.form.placeholder": "Conte-nos sobre seu jogo, idiomas-alvo e prazo...",
-            "contact.form.submit": "Enviar Solicitação →",
-            "footer.copy": "© 2026 Kaizen Localization. Todos os direitos reservados."
-        },
-        th: {
-            "nav.services": "บริการ",
-            "nav.about": "เกี่ยวกับเรา",
-            "nav.global": "ทั่วโลก",
-            "nav.process": "กระบวนการ",
-            "nav.contact": "ติดต่อ",
-            "nav.cta": "ขอใบเสนอราคา",
-            "hero.badge": "ผู้เชี่ยวชาญ Cocos Engine",
-            "hero.title": "เกมของคุณ,",
-            "hero.titleHighlight": "ทุกภาษา",
-            "hero.subtitle": "เราแปลเกม Cocos ด้วยความแม่นยำระดับเจ้าของภาษา — การแปล, QA, พากย์เสียง, ซับไตเติล และ UI/UX สำหรับตลาดทั่วโลก",
-            "hero.cta": "เริ่มโปรเจกต์ →",
-            "hero.cta2": "ดูบริการ",
-            "hero.stat1": "ผู้เชี่ยวชาญ",
-            "hero.stat2": "ภาษาที่รองรับ",
-            "hero.stat3": "สำนักงานทั่วโลก",
-            "hero.stat4": "ปีประสบการณ์",
-            "services.label": "สิ่งที่เราทำ",
-            "services.title": "การแปลเกมครบวงจร",
-            "services.subtitle": "จากสตริงแรกถึง build สุดท้าย — ทุกพิกเซล ทุกเสียง ทุกองค์ประกอบ UI ปรับให้เหมาะกับตลาดเป้าหมาย",
-            "services.s1.title": "การแปล & การสร้างสรรค์",
-            "services.s1.desc": "นักแปลเจ้าของภาษาแปลข้อความเกม บทสนทนา และเรื่องราวโดยคำนึงถึงบริบททางวัฒนธรรม",
-            "services.s2.title": "การทดสอบ QA",
-            "services.s2.desc": "QA ด้านภาษาและฟังก์ชันเพื่อจับข้อผิดพลาดก่อนเปิดตัว",
-            "services.s3.title": "การปรับวัฒนธรรม",
-            "services.s3.desc": "ปรับภาพ สัญลักษณ์ สี และเรื่องราวให้สอดคล้องกับผู้ชมท้องถิ่น",
-            "services.s4.title": "พากย์เสียง",
-            "services.s4.desc": "การคัดเลือกเสียง บันทึก และมิกซ์เสียงระดับมืออาชีพใน 20+ ภาษา",
-            "services.s5.title": "ซับไตเติล",
-            "services.s5.desc": "ซับไตเติลที่ซิงค์สำหรับ cutscene และบทสนทนาในเกม",
-            "services.s6.title": "การแปล UI/UX",
-            "services.s6.desc": "ปรับเลย์เอาต์ ตัวอักษร และองค์ประกอบโต้ตอบสำหรับ RTL, CJK และความยาวข้อความที่แตกต่าง",
-            "about.label": "เกี่ยวกับเรา",
-            "about.title": "สร้างโดยนักแปล,\nสำหรับนักพัฒนาเกม",
-            "about.p1": "Kaizen ก่อตั้งในปี 2026 โดยทีมที่มีประสบการณ์สองปีในการแปลเกม — ส่งมอบเกม ทำ QA และเรียนรู้ว่าอะไรทำให้ผู้เล่นซาเปาโลรู้สึกอินเหมือนผู้เล่นโฮจิมินห์",
-            "about.p2": "ปัจจุบันด้วยผู้เชี่ยวชาญ 50 คนในสี่ประเทศ เราเน้นเฉพาะเกม Cocos เท่านั้น",
-            "about.kanji": "การปรับปรุงอย่างต่อเนื่อง",
-            "about.f1.title": "เวิร์กโฟลว์ Cocos-native",
-            "about.f1.desc": "เครื่องมือสร้างสำหรับรูปแบบไฟล์ Cocos",
-            "about.f2.title": "เจ้าของภาษา",
-            "about.f2.desc": "ทุกภาษามีเจ้าของภาษา",
-            "about.f3.title": "NDA Compliant",
-            "about.f3.desc": "การรักษาความลับระดับองค์กร",
-            "about.f4.title": "ทีมขยายได้",
-            "about.f4.desc": "จาก indie ถึง AAA",
-            "global.label": "สถานะทั่วโลก",
-            "global.title": "สี่สำนักงาน มาตรฐานเดียว",
-            "global.subtitle": "ตั้งอยู่เชิงกลยุทธ์ในเอเชียตะวันออกเฉียงใต้ อเมริกาใต้ และอื่นๆ",
-            "global.vn.name": "เวียดนาม",
-            "global.vn.city": "โฮจิมินห์ซิตี้",
-            "global.vn.desc": "สำนักงานใหญ่ ทีมแปลหลักและศูนย์จัดการโปรเจกต์สำหรับ APAC",
-            "global.vn.tag": "สำนักงานใหญ่",
-            "global.km.name": "กัมพูชา",
-            "global.km.city": "พนมเปญ",
-            "global.km.desc": "ผู้เชี่ยวชาญภาษาเอเชียตะวันออกเฉียงใต้และทีมปรับวัฒนธรรมสำหรับตลาดอาเซียน",
-            "global.km.tag": "ศูนย์อาเซียน",
-            "global.br.name": "บราซิล",
-            "global.br.city": "เซาเปาโล",
-            "global.br.desc": "ศูนย์แปล LATAM สตูดิโอพากย์เสียงโปรตุเกสและสเปน",
-            "global.br.tag": "ศูนย์ LATAM",
-            "global.th.name": "ไทย",
-            "global.th.city": "กรุงเทพฯ",
-            "global.th.desc": "รองรับภาษาไทยและภาษาภูมิภาค ศูนย์ QA สำหรับเกมมือถือ",
-            "global.th.tag": "ศูนย์ QA",
-            "process.label": "วิธีการทำงาน",
-            "process.title": "จากบรีฟถึง Build อย่างราบรื่น",
-            "process.subtitle": "กระบวนการสี่ขั้นตอนที่ได้รับการพิสูจน์แล้ว",
-            "process.s1.title": "ค้นพบ",
-            "process.s1.desc": "เราตรวจสอบไฟล์เกม กำหนดขอบเขต ระบุ locale เป้าหมาย และตกลงสไตล์ไกด์",
-            "process.s2.title": "การแปล",
-            "process.s2.desc": "นักแปลเจ้าของภาษาทำงานตามบริบท นักพากย์บันทึกเสียง ซับไตเติลซิงค์ UI ปรับ — ทั้งหมดพร้อมกัน",
-            "process.s3.title": "QA & ทดสอบ",
-            "process.s3.desc": "ตรวจสอบภาษา ทดสอบฟังก์ชันบนอุปกรณ์เป้าหมาย ตรวจสอบวัฒนธรรม และขัดเกลาขั้นสุดท้าย",
-            "process.s4.title": "ส่งมอบ",
-            "process.s4.desc": "ทรัพย์สินสุดท้ายส่งในรูปแบบที่คุณต้องการ รองรับหลังเปิดตัว",
-            "tech.label": "ข้อได้เปรียบ",
-            "tech.title": "สร้างเพื่อ Cocos ตั้งแต่วันแรก",
-            "tech.subtitle": "เราไม่แค่แปลเกม — เราเข้าใจ engine ที่สร้างมัน",
-            "tech.t1.title": "ความเชี่ยวชาญ Cocos Engine",
-            "tech.t1.desc": "ความรู้ลึกเกี่ยวกับ Cocos Creator, Cocos2d-x และ asset pipeline",
-            "tech.t2.title": "เครื่องมือกำหนดเอง",
-            "tech.t2.desc": "เครื่องมือสกัดและฉีดสำหรับตารางสตริง Cocos",
-            "tech.t3.title": "QA Mobile-First",
-            "tech.t3.desc": "แล็บอุปกรณ์ครอบคลุม iOS, Android และ Web",
-            "cta.title": "พร้อมสู่ระดับโลก?",
-            "cta.subtitle": "มาคุยเรื่องเกมของคุณ เราจะสร้างแผนการแปลที่เหมาะกับไทม์ไลน์และงบประมาณ",
-            "cta.btn": "ปรึกษาฟรี →",
-            "cta.btn2": "ดูบริการทั้งหมด",
-            "contact.label": "ติดต่อเรา",
-            "contact.title": "มาสร้างสิ่งดีๆ ด้วยกัน",
-            "contact.desc": "ไม่ว่าคุณจะเปิดตัวเกมใหม่หรือขยายเกมที่มีอยู่สู่ตลาดใหม่ เราพร้อมช่วย",
-            "contact.business": "เวลาทำการ",
-            "contact.hours": "จ.–ศ., 9:00–18:00 (GMT+7)",
-            "contact.response": "เวลาตอบกลับ",
-            "contact.responseTime": "ภายใน 24 ชั่วโมง",
-            "contact.form.name": "ชื่อ",
-            "contact.form.company": "บริษัท",
-            "contact.form.email": "อีเมล",
-            "contact.form.service": "บริการที่ต้องการ",
-            "contact.form.select": "เลือกบริการ...",
-            "contact.form.fullPackage": "แพ็คเกจการแปลครบวงจร",
-            "contact.form.message": "รายละเอียดโปรเจกต์",
-            "contact.form.placeholder": "บอกเราเกี่ยวกับเกม ภาษาเป้าหมาย และไทม์ไลน์...",
-            "contact.form.submit": "ส่งคำถาม →",
-            "footer.copy": "© 2026 Kaizen Localization สงวนลิขสิทธิ์"
-        }
-    };
+        const nav = document.getElementById("nav");
+        const navLinks = document.getElementById("navLinks");
+        const menuButton = document.getElementById("menuButton");
+        const sectionLinks = [...document.querySelectorAll(".nav__links a")];
+        const sections = sectionLinks
+            .map((link) => document.querySelector(link.getAttribute("href")))
+            .filter(Boolean);
 
-    // ===== LANGUAGE SYSTEM =====
-    const langMap = {
-        'en': 'en', 'us': 'en', 'gb': 'en', 'au': 'en', 'ca': 'en',
-        'vi': 'vi', 'vn': 'vi',
-        'km': 'km', 'kh': 'km',
-        'pt': 'pt-br', 'br': 'pt-br',
-        'th': 'th'
-    };
+        function updateNavState() {
+            nav.classList.toggle("is-scrolled", window.scrollY > 10);
 
-    const langLabels = { 'en': 'EN', 'vi': 'VI', 'km': 'KM', 'pt-br': 'PT-BR', 'th': 'TH' };
+            const current = sections
+                .slice()
+                .reverse()
+                .find((section) => section.offsetTop - 140 <= window.scrollY);
 
-    let currentLang = 'en';
-
-    function setLanguage(lang) {
-        if (!translations[lang]) lang = 'en';
-        currentLang = lang;
-        
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-            const key = el.getAttribute('data-i18n');
-            if (translations[lang][key]) {
-                el.textContent = translations[lang][key];
+            if (current) {
+                sectionLinks.forEach((link) => {
+                    link.classList.toggle("is-active", link.getAttribute("href") === `#${current.id}`);
+                });
             }
-        });
-
-        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-            const key = el.getAttribute('data-i18n-placeholder');
-            if (translations[lang][key]) {
-                el.placeholder = translations[lang][key];
-            }
-        });
-
-        document.getElementById('langLabel').textContent = langLabels[lang];
-        document.querySelectorAll('.lang-option').forEach(opt => {
-            opt.classList.toggle('active', opt.dataset.langCode === lang);
-        });
-
-        localStorage.setItem('kaizen-lang', lang);
-    }
-
-    // IP Geolocation for auto language detection
-    async function detectLanguage() {
-        const saved = localStorage.getItem('kaizen-lang');
-        if (saved && translations[saved]) {
-            setLanguage(saved);
-            return;
         }
 
-        try {
-            const res = await fetch('https://ipapi.co/json/');
-            const data = await res.json();
-            const cc = (data.country_code || '').toLowerCase();
-            const detected = langMap[cc] || 'en';
-            setLanguage(detected);
-        } catch {
-            setLanguage('en');
-        }
-    }
-
-    // ===== UI INTERACTIONS =====
-    document.addEventListener('DOMContentLoaded', () => {
-        detectLanguage();
-
-        // Language selector
-        const langSelector = document.getElementById('langSelector');
-        const langDropdown = document.getElementById('langDropdown');
-        const langCurrent = document.getElementById('langCurrent');
-
-        langCurrent.addEventListener('click', (e) => {
-            e.stopPropagation();
-            langDropdown.classList.toggle('open');
+        menuButton.addEventListener("click", () => {
+            const isOpen = navLinks.classList.toggle("is-open");
+            menuButton.setAttribute("aria-expanded", String(isOpen));
         });
 
-        document.querySelectorAll('.lang-option').forEach(opt => {
-            opt.addEventListener('click', () => {
-                setLanguage(opt.dataset.langCode);
-                langDropdown.classList.remove('open');
+        sectionLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+                navLinks.classList.remove("is-open");
+                menuButton.setAttribute("aria-expanded", "false");
             });
         });
 
-        document.addEventListener('click', () => {
-            langDropdown.classList.remove('open');
-        });
-
-        // Navbar scroll
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            navbar.classList.toggle('scrolled', window.scrollY > 50);
-        });
-
-        // Mobile menu
-        const mobileToggle = document.getElementById('mobileToggle');
-        const navLinks = document.getElementById('navLinks');
-        mobileToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('open');
-        });
-        navLinks.querySelectorAll('a').forEach(a => {
-            a.addEventListener('click', () => navLinks.classList.remove('open'));
-        });
-
-        // Scroll animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+                    entry.target.classList.add("is-visible");
+                    revealObserver.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        }, { threshold: 0.16, rootMargin: "0px 0px -60px 0px" });
 
-        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(a => {
-            a.addEventListener('click', (e) => {
-                e.preventDefault();
-                const target = document.querySelector(a.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
+        document.querySelectorAll(".reveal, .standards").forEach((element) => {
+            revealObserver.observe(element);
         });
-    });
 
-    // Form handler
-    function handleSubmit(e) {
-        e.preventDefault();
-        const btn = e.target.querySelector('button[type="submit"]');
-        const originalText = btn.textContent;
-        btn.textContent = '✓ Sent!';
-        btn.style.background = '#10B981';
-        setTimeout(() => {
-            btn.textContent = originalText;
-            btn.style.background = '';
-            e.target.reset();
-        }, 2000);
-    }
+        let raf = null;
+        window.addEventListener("scroll", () => {
+            if (raf) return;
+            raf = requestAnimationFrame(() => {
+                updateNavState();
+                raf = null;
+            });
+        }, { passive: true });
+
+        updateNavState();
     </script>
 </body>
 </html>
