@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kaizen Software - Translation and Localization</title>
     <meta name="description" content="Kaizen helps businesses translate and localize software, apps, and digital products with clarity, consistency, and cultural understanding.">
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%232563eb'/%3E%3Cpath d='M18 14h9v18l17-18h11L35 35l21 15H43L27 38v12h-9V14z' fill='white'/%3E%3C/svg%3E">
+    <link rel="icon" href="assets/kaizen-logo-mark.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -84,7 +84,7 @@
         }
 
         .nav.is-scrolled {
-            background: rgba(247, 244, 237, 0.92);
+            background: rgba(245, 251, 255, 0.92);
             backdrop-filter: blur(18px);
             box-shadow: 0 16px 44px rgba(31, 28, 22, 0.08);
         }
@@ -100,20 +100,15 @@
         .brand {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             font-weight: 800;
             letter-spacing: 0;
         }
 
-        .brand__mark {
-            width: 38px;
-            height: 38px;
-            display: grid;
-            place-items: center;
-            border-radius: var(--radius);
-            background: var(--green);
-            color: white;
-            font-weight: 800;
+        .brand__logo {
+            width: auto;
+            height: 46px;
+            object-fit: contain;
         }
 
         .nav__links {
@@ -157,6 +152,17 @@
             font-weight: 700;
             text-align: center;
             background: rgba(255, 255, 255, 0.54);
+        }
+
+        select.lang {
+            appearance: none;
+            cursor: pointer;
+            outline: none;
+        }
+
+        select.lang:focus {
+            border-color: var(--green);
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.24);
         }
 
         .menu {
@@ -219,7 +225,7 @@
             inset: 0;
             z-index: -2;
             background:
-                linear-gradient(90deg, rgba(247, 244, 237, 0.98) 0%, rgba(247, 244, 237, 0.86) 42%, rgba(247, 244, 237, 0.2) 100%),
+                linear-gradient(90deg, rgba(245, 251, 255, 0.98) 0%, rgba(245, 251, 255, 0.86) 42%, rgba(245, 251, 255, 0.2) 100%),
                 url("https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1900&q=82") center right / cover;
         }
 
@@ -611,6 +617,11 @@
             font-weight: 800;
         }
 
+        .role a::after {
+            content: "↗";
+            margin-left: 8px;
+        }
+
         .cta {
             padding: 84px 0;
             background: var(--green-dark);
@@ -777,6 +788,10 @@
                 display: none;
             }
 
+            .lang {
+                max-width: 78px;
+            }
+
             .hero {
                 min-height: auto;
                 padding-top: 104px;
@@ -784,7 +799,7 @@
 
             .hero::before {
                 background:
-                    linear-gradient(180deg, rgba(247, 244, 237, 0.7) 0%, rgba(247, 244, 237, 0.98) 58%, var(--paper) 100%),
+                    linear-gradient(180deg, rgba(245, 251, 255, 0.7) 0%, rgba(245, 251, 255, 0.98) 58%, var(--paper) 100%),
                     url("https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=82") center top / cover;
             }
 
@@ -826,19 +841,27 @@
     <header class="nav" id="nav">
         <div class="container nav__inner">
             <a class="brand" href="#home" aria-label="Kaizen home">
-                <span class="brand__mark">K</span>
-                <span>Kaizen</span>
+                <img class="brand__logo" src="assets/kaizen-logo-mark.png" alt="Kaizen">
             </a>
             <nav class="nav__links" id="navLinks" aria-label="Primary navigation">
                 <a href="#home">Home</a>
                 <a href="#services">Services</a>
                 <a href="#about">About Us</a>
                 <a href="#why-us">Why Us</a>
+                <a class="official-careers-link" href="https://kaizenvn.live/en/careers">Careers</a>
                 <a href="#careers">Join Us</a>
                 <a href="#open-positions">Open Positions</a>
             </nav>
             <div class="nav__actions">
-                <span class="lang">EN</span>
+                <select class="lang" id="languageSelect" aria-label="Select language">
+                    <option value="en">EN</option>
+                    <option value="vi">VI</option>
+                    <option value="th">TH</option>
+                    <option value="pt-BR">PT-BR</option>
+                    <option value="zh">中文</option>
+                    <option value="fr">FR</option>
+                    <option value="km">KM</option>
+                </select>
                 <a class="button" href="#contact">Contact Us</a>
                 <button class="menu" id="menuButton" type="button" aria-label="Open menu" aria-expanded="false">
                     <span></span>
@@ -860,7 +883,7 @@
                     </p>
                     <div class="hero__actions reveal" data-delay="3">
                         <a class="button" href="#services">Explore with us</a>
-                        <a class="button button--light" href="#careers">Work with us</a>
+                        <a class="button button--light official-careers-link" href="https://kaizenvn.live/en/careers">Work with us</a>
                     </div>
                 </div>
                 <aside class="hero__card float reveal" data-delay="2" aria-label="Kaizen snapshot">
@@ -1111,7 +1134,7 @@
                             <span class="pill">PM</span>
                             <span class="pill">HCM City</span>
                         </div>
-                        <a href="mailto:mail@kaizenvn.live?subject=Project%20Management%20Application">Apply now</a>
+                        <a class="job-link" data-job-id="cmp2e2op50004g2hd55075wg7" href="https://kaizenvn.live/en/careers/cmp2e2op50004g2hd55075wg7">View job description</a>
                     </article>
                     <article class="role reveal" data-delay="1">
                         <span class="number">Full Time</span>
@@ -1122,7 +1145,7 @@
                             <span class="pill">QA</span>
                             <span class="pill">HCM City</span>
                         </div>
-                        <a href="mailto:mail@kaizenvn.live?subject=QA%20Art%20Application">Apply now</a>
+                        <a class="job-link" data-job-id="cmp2e1na10003g2hddt89xi4f" href="https://kaizenvn.live/en/careers/cmp2e1na10003g2hddt89xi4f">View job description</a>
                     </article>
                     <article class="role reveal" data-delay="2">
                         <span class="number">Full Time</span>
@@ -1133,7 +1156,7 @@
                             <span class="pill">QC</span>
                             <span class="pill">HCM City</span>
                         </div>
-                        <a href="mailto:mail@kaizenvn.live?subject=QC%20Game%20Application">Apply now</a>
+                        <a class="job-link" data-job-id="cmp2dzsak0002g2hdfx8ymmoq" href="https://kaizenvn.live/en/careers/cmp2dzsak0002g2hdfx8ymmoq">View job description</a>
                     </article>
                 </div>
             </div>
@@ -1156,8 +1179,7 @@
         <div class="container footer__inner">
             <div>
                 <a class="brand" href="#home">
-                    <span class="brand__mark">K</span>
-                    <span>Kaizen</span>
+                    <img class="brand__logo" src="assets/kaizen-logo-mark.png" alt="Kaizen">
                 </a>
                 <p>Professional translation and localization for software and digital products. We help your content stay clear, consistent, and natural across every language.</p>
             </div>
@@ -1173,10 +1195,321 @@
         const nav = document.getElementById("nav");
         const navLinks = document.getElementById("navLinks");
         const menuButton = document.getElementById("menuButton");
-        const sectionLinks = [...document.querySelectorAll(".nav__links a")];
+        const languageSelect = document.getElementById("languageSelect");
+        const sectionLinks = [...document.querySelectorAll(".nav__links a[href^='#']")];
         const sections = sectionLinks
             .map((link) => document.querySelector(link.getAttribute("href")))
             .filter(Boolean);
+        const i18nTargets = [
+            ["title", "title", "title"],
+            ["meta[name='description']", "meta.description", "content"],
+            [".nav__links a[href='#home']", "nav.home"],
+            [".nav__links a[href='#services']", "nav.services"],
+            [".nav__links a[href='#about']", "nav.about"],
+            [".nav__links a[href='#why-us']", "nav.why"],
+            [".nav__links .official-careers-link", "nav.careers"],
+            [".nav__links a[href='#careers']", "nav.join"],
+            [".nav__links a[href='#open-positions']", "nav.positions"],
+            [".nav__actions .button", "nav.contact"],
+            [".hero .eyebrow", "hero.eyebrow"],
+            [".hero h1", "hero.title"],
+            [".hero__copy", "hero.copy"],
+            [".hero__actions .button:first-child", "hero.cta.primary"],
+            [".hero__actions .button:last-child", "hero.cta.secondary"],
+            [".metric div:nth-child(1) span", "metric.languages"],
+            [".metric div:nth-child(2) span", "metric.countries"],
+            [".metric div:nth-child(3) span", "metric.coverage"],
+            [".metric div:nth-child(4) span", "metric.growth"],
+            [".hero__card p", "hero.card"],
+            ["#services .eyebrow", "services.eyebrow"],
+            ["#services .section-head h2", "services.title"],
+            ["#services .section-head p", "services.copy"],
+            [".service:nth-child(1) h3", "services.s1.title"],
+            [".service:nth-child(1) p", "services.s1.copy"],
+            [".service:nth-child(2) h3", "services.s2.title"],
+            [".service:nth-child(2) p", "services.s2.copy"],
+            [".service:nth-child(3) h3", "services.s3.title"],
+            [".service:nth-child(3) p", "services.s3.copy"],
+            ["#about .eyebrow", "about.eyebrow"],
+            ["#about .section-head h2", "about.title"],
+            ["#about .section-head p", "about.copy"],
+            [".about-card:nth-child(1) h3", "about.card1.title"],
+            [".about-card:nth-child(1) p", "about.card1.copy"],
+            [".about-card:nth-child(2) h3", "about.card2.title"],
+            [".about-card:nth-child(2) p", "about.card2.copy"],
+            [".about-card:nth-child(3) h3", "about.card3.title"],
+            [".about-card:nth-child(3) p", "about.card3.copy"],
+            [".about-card:nth-child(4) h3", "about.card4.title"],
+            [".about-card:nth-child(4) p", "about.card4.copy"],
+            ["#values .eyebrow", "values.eyebrow"],
+            ["#values .section-head h2", "values.title"],
+            ["#values .section-head p", "values.copy"],
+            ["#values .value:nth-child(1) h3", "values.v1.title"],
+            ["#values .value:nth-child(1) p", "values.v1.copy"],
+            ["#values .value:nth-child(2) h3", "values.v2.title"],
+            ["#values .value:nth-child(2) p", "values.v2.copy"],
+            ["#values .value:nth-child(3) h3", "values.v3.title"],
+            ["#values .value:nth-child(3) p", "values.v3.copy"],
+            ["#values .value:nth-child(4) h3", "values.v4.title"],
+            ["#values .value:nth-child(4) p", "values.v4.copy"],
+            ["#why-us .eyebrow", "why.eyebrow"],
+            ["#why-us .section-head h2", "why.title"],
+            ["#why-us .section-head p", "why.copy"],
+            [".edge:nth-child(1) h3", "why.e1.title"],
+            [".edge:nth-child(1) p", "why.e1.copy"],
+            [".edge:nth-child(2) h3", "why.e2.title"],
+            [".edge:nth-child(2) p", "why.e2.copy"],
+            [".edge:nth-child(3) h3", "why.e3.title"],
+            [".edge:nth-child(3) p", "why.e3.copy"],
+            [".standard:nth-child(1) > span", "standard.quality"],
+            [".standard:nth-child(1) strong", "standard.high"],
+            [".standard:nth-child(2) > span", "standard.coverage"],
+            [".standard:nth-child(3) > span", "standard.review"],
+            [".standard:nth-child(3) strong", "standard.multi"],
+            ["#careers .eyebrow", "careers.eyebrow"],
+            ["#careers .section-head h2", "careers.title"],
+            ["#careers .section-head p", "careers.copy"],
+            [".culture-copy h3", "careers.culture.title"],
+            [".culture-copy p:nth-of-type(1)", "careers.culture.copy1"],
+            [".culture-copy p:nth-of-type(2)", "careers.culture.copy2"],
+            ["#careers .value:nth-child(1) .number", "careers.v1.kicker"],
+            ["#careers .value:nth-child(1) h3", "careers.v1.title"],
+            ["#careers .value:nth-child(1) p", "careers.v1.copy"],
+            ["#careers .value:nth-child(2) h3", "careers.v2.title"],
+            ["#careers .value:nth-child(2) p", "careers.v2.copy"],
+            ["#careers .value:nth-child(3) .number", "careers.v3.kicker"],
+            ["#careers .value:nth-child(3) h3", "careers.v3.title"],
+            ["#careers .value:nth-child(3) p", "careers.v3.copy"],
+            ["#careers .value:nth-child(4) .number", "careers.v4.kicker"],
+            ["#careers .value:nth-child(4) h3", "careers.v4.title"],
+            ["#careers .value:nth-child(4) p", "careers.v4.copy"],
+            ["#open-positions .eyebrow", "positions.eyebrow"],
+            ["#open-positions .section-head h2", "positions.title"],
+            ["#open-positions .section-head p", "positions.copy"],
+            [".role .number", "positions.fullTime", "textAll"],
+            [".role:nth-child(1) h3", "positions.r1.title"],
+            [".role:nth-child(1) p", "positions.r1.copy"],
+            [".role:nth-child(2) h3", "positions.r2.title"],
+            [".role:nth-child(2) p", "positions.r2.copy"],
+            [".role:nth-child(3) h3", "positions.r3.title"],
+            [".role:nth-child(3) p", "positions.r3.copy"],
+            [".role a", "positions.viewDescription", "textAll"],
+            [".pill:nth-child(3)", "positions.city", "textAll"],
+            ["#contact h2", "cta.title"],
+            ["#contact p", "cta.copy"],
+            ["#contact .button", "nav.contact"],
+            [".footer p", "footer.copy"],
+            [".contact-list span:nth-child(1)", "positions.city"],
+        ];
+
+        const translations = {
+            en: {
+                "title": "Kaizen Software - Translation and Localization",
+                "meta.description": "Kaizen helps businesses translate and localize software, apps, and digital products with clarity, consistency, and cultural understanding.",
+                "nav.home": "Home",
+                "nav.services": "Services",
+                "nav.about": "About Us",
+                "nav.why": "Why Us",
+                "nav.careers": "Careers",
+                "nav.join": "Join Us",
+                "nav.positions": "Open Positions",
+                "nav.contact": "Contact Us",
+                "hero.eyebrow": "The Architectural Globalist",
+                "hero.title": "Kaizen Software",
+                "hero.copy": "Helping businesses communicate in multiple languages. We offer translation and localization services for software, apps, and digital products, with an emphasis on clarity, consistency, and genuine user understanding.",
+                "hero.cta.primary": "Explore with us",
+                "hero.cta.secondary": "Work with us",
+                "metric.languages": "Languages mastered",
+                "metric.countries": "Countries present",
+                "metric.coverage": "Language coverage",
+                "metric.growth": "Growth visibility index",
+                "hero.card": "Professional translation and localization for software and digital products, based in Ho Chi Minh City, Vietnam.",
+                "services.eyebrow": "Core Services",
+                "services.title": "Clear content for global software products.",
+                "services.copy": "We do not just translate content. We adapt it for real users so your product is clear, natural, and ready for global markets.",
+                "services.s1.title": "Translation",
+                "services.s1.copy": "Accurate translation for software, applications, and digital content. Focused on meaning, clarity, and consistency across all materials.",
+                "services.s2.title": "Localization",
+                "services.s2.copy": "Adapting content to match local language, tone, and user expectations, including UI text, in-product content, and user experience.",
+                "services.s3.title": "Global Solutions",
+                "services.s3.copy": "Support for companies entering new markets. We help manage multilingual content and maintain consistency at scale.",
+                "about.eyebrow": "Who Are We",
+                "about.title": "We are Kaizen, a software translation and localization company based in Vietnam.",
+                "about.copy": "We help Vietnamese and international businesses expand their software products to the global market through accurate translation and in-depth localization, delivering a natural and native-like experience to users in over 30 languages.",
+                "about.card1.title": "Languages Mastered",
+                "about.card1.copy": "Coverage built for software, apps, and digital products that need practical multilingual support.",
+                "about.card2.title": "Our Mission",
+                "about.card2.copy": "Delivering accurate translation with real cultural understanding by combining precise language with practical localization.",
+                "about.card3.title": "Our Vision",
+                "about.card3.copy": "To be a trustworthy language partner for businesses that are expanding into new markets.",
+                "about.card4.title": "What We Handle",
+                "about.card4.copy": "Accurate translation, cultural adaptation, and quality assurance for content that has to be correct, natural, and consistent.",
+                "values.eyebrow": "Our Core Values",
+                "values.title": "The foundation of our work.",
+                "values.copy": "Every project is shaped by accuracy, clarity, consistency, and reliability.",
+                "values.v1.title": "Accuracy",
+                "values.v1.copy": "We focus on correct meaning, terminology, and context in every translation.",
+                "values.v2.title": "Clarity",
+                "values.v2.copy": "Content is easy to understand and natural for the target audience.",
+                "values.v3.title": "Consistency",
+                "values.v3.copy": "We keep terminology and tone aligned across your entire product.",
+                "values.v4.title": "Reliability",
+                "values.v4.copy": "On-time delivery and stable quality you can depend on.",
+                "why.eyebrow": "Competitive Edge",
+                "why.title": "Why us?",
+                "why.copy": "Our translators understand both language and context, especially for digital products. We use structured workflows to keep quality stable as your product grows.",
+                "why.e1.title": "Language Expertise",
+                "why.e1.copy": "Translators who understand context, terminology, and the way users experience digital products.",
+                "why.e2.title": "Structured Process",
+                "why.e2.copy": "Clear workflows, review steps, and terminology alignment across every project.",
+                "why.e3.title": "Long-term Support",
+                "why.e3.copy": "Ongoing translation and localization support as product content changes over time.",
+                "standard.quality": "Translation Quality",
+                "standard.high": "High",
+                "standard.coverage": "Language Coverage",
+                "standard.review": "Review Process",
+                "standard.multi": "Multi-step",
+                "careers.eyebrow": "Join the team",
+                "careers.title": "Join Kaizen. Let's Kaizen together.",
+                "careers.copy": "Looking for a place where you can work seriously on international software projects, but still have fun, creativity, and great vibes every day?",
+                "careers.culture.title": "More than translation.",
+                "careers.culture.copy1": "By delivering comprehensive translation and localization solutions for software, Kaizen empowers businesses to expand their products globally.",
+                "careers.culture.copy2": "We make projects run smoothly and create natural, engaging experiences in international markets by combining precise language with cultural insight.",
+                "careers.v1.kicker": "Culture",
+                "careers.v1.title": "More than translation",
+                "careers.v1.copy": "A team that treats localization as product communication, not just language conversion.",
+                "careers.v2.title": "Countries present",
+                "careers.v2.copy": "Multicultural work connected to real international product needs.",
+                "careers.v3.kicker": "Growth",
+                "careers.v3.title": "Innovative Growth",
+                "careers.v3.copy": "Where talent grows and thrives through serious work on global software projects.",
+                "careers.v4.kicker": "Team",
+                "careers.v4.title": "Inclusive Environment",
+                "careers.v4.copy": "A multicultural environment that respects differences and practical collaboration.",
+                "positions.eyebrow": "Recruitment",
+                "positions.title": "Open positions.",
+                "positions.copy": "We are a translation and localization team based in Ho Chi Minh City, always looking for talented, passionate people who want to help bring Vietnamese software to the world.",
+                "positions.fullTime": "Full Time",
+                "positions.r1.title": "Project Management",
+                "positions.r1.copy": "Coordinate localization projects, timelines, quality checks, and client communication.",
+                "positions.r2.title": "QA Art",
+                "positions.r2.copy": "Review localized content, visual consistency, layout behavior, and product readiness.",
+                "positions.r3.title": "QC Game",
+                "positions.r3.copy": "Check translated product content for clarity, context, correctness, and user experience.",
+                "positions.apply": "Apply now",
+                "positions.viewDescription": "View job description",
+                "positions.city": "HCM City, Vietnam",
+                "cta.title": "Ready to let the world know about your product?",
+                "cta.copy": "Start a project, ask about localization support, or join us as a Kaizener.",
+                "footer.copy": "Professional translation and localization for software and digital products. We help your content stay clear, consistent, and natural across every language."
+            },
+            vi: {
+                "title": "Kaizen Software - Dịch thuật và bản địa hóa",
+                "meta.description": "Kaizen giúp doanh nghiệp dịch và bản địa hóa phần mềm, ứng dụng và sản phẩm số với sự rõ ràng, nhất quán và thấu hiểu văn hóa.",
+                "nav.home": "Trang chủ", "nav.services": "Dịch vụ", "nav.about": "Về chúng tôi", "nav.why": "Vì sao chọn", "nav.careers": "Tuyển dụng", "nav.join": "Gia nhập", "nav.positions": "Vị trí mở", "nav.contact": "Liên hệ",
+                "hero.eyebrow": "Đối tác toàn cầu có cấu trúc", "hero.title": "Kaizen Software", "hero.copy": "Giúp doanh nghiệp giao tiếp bằng nhiều ngôn ngữ. Chúng tôi cung cấp dịch thuật và bản địa hóa cho phần mềm, ứng dụng và sản phẩm số, tập trung vào sự rõ ràng, nhất quán và trải nghiệm người dùng chân thực.", "hero.cta.primary": "Khám phá cùng chúng tôi", "hero.cta.secondary": "Làm việc cùng chúng tôi",
+                "metric.languages": "Ngôn ngữ thành thạo", "metric.countries": "Quốc gia hiện diện", "metric.coverage": "Độ phủ ngôn ngữ", "metric.growth": "Chỉ số tăng trưởng nhận diện", "hero.card": "Dịch thuật và bản địa hóa chuyên nghiệp cho phần mềm và sản phẩm số, đặt tại TP. Hồ Chí Minh, Việt Nam.",
+                "services.eyebrow": "Dịch vụ chính", "services.title": "Nội dung rõ ràng cho sản phẩm phần mềm toàn cầu.", "services.copy": "Chúng tôi không chỉ dịch nội dung. Chúng tôi điều chỉnh nội dung cho người dùng thật để sản phẩm rõ ràng, tự nhiên và sẵn sàng cho thị trường quốc tế.", "services.s1.title": "Dịch thuật", "services.s1.copy": "Dịch chính xác cho phần mềm, ứng dụng và nội dung số. Tập trung vào ý nghĩa, sự rõ ràng và tính nhất quán.", "services.s2.title": "Bản địa hóa", "services.s2.copy": "Điều chỉnh nội dung theo ngôn ngữ, sắc thái và kỳ vọng người dùng địa phương, bao gồm UI, nội dung trong sản phẩm và trải nghiệm người dùng.", "services.s3.title": "Giải pháp toàn cầu", "services.s3.copy": "Hỗ trợ doanh nghiệp đi vào thị trường mới. Chúng tôi giúp quản lý nội dung đa ngôn ngữ và giữ tính nhất quán ở quy mô lớn.",
+                "about.eyebrow": "Chúng tôi là ai", "about.title": "Chúng tôi là Kaizen, công ty dịch thuật và bản địa hóa phần mềm tại Việt Nam.", "about.copy": "Chúng tôi giúp doanh nghiệp Việt Nam và quốc tế đưa sản phẩm phần mềm ra thị trường toàn cầu bằng dịch thuật chính xác và bản địa hóa chuyên sâu, mang đến trải nghiệm tự nhiên như bản xứ cho người dùng bằng hơn 30 ngôn ngữ.", "about.card1.title": "Ngôn ngữ thành thạo", "about.card1.copy": "Độ phủ dành cho phần mềm, ứng dụng và sản phẩm số cần hỗ trợ đa ngôn ngữ thực tiễn.", "about.card2.title": "Sứ mệnh", "about.card2.copy": "Cung cấp bản dịch chính xác cùng sự thấu hiểu văn hóa bằng cách kết hợp ngôn ngữ chuẩn xác với bản địa hóa thực tế.", "about.card3.title": "Tầm nhìn", "about.card3.copy": "Trở thành đối tác ngôn ngữ đáng tin cậy cho doanh nghiệp mở rộng sang thị trường mới.", "about.card4.title": "Chúng tôi xử lý gì", "about.card4.copy": "Dịch thuật chính xác, thích ứng văn hóa và đảm bảo chất lượng cho nội dung cần đúng, tự nhiên và nhất quán.",
+                "values.eyebrow": "Giá trị cốt lõi", "values.title": "Nền tảng trong cách chúng tôi làm việc.", "values.copy": "Mỗi dự án được định hình bởi độ chính xác, sự rõ ràng, tính nhất quán và độ tin cậy.", "values.v1.title": "Chính xác", "values.v1.copy": "Chúng tôi tập trung vào đúng nghĩa, thuật ngữ và ngữ cảnh trong từng bản dịch.", "values.v2.title": "Rõ ràng", "values.v2.copy": "Nội dung dễ hiểu và tự nhiên với người dùng mục tiêu.", "values.v3.title": "Nhất quán", "values.v3.copy": "Chúng tôi giữ thuật ngữ và giọng điệu đồng nhất trên toàn bộ sản phẩm.", "values.v4.title": "Đáng tin cậy", "values.v4.copy": "Giao đúng hạn và chất lượng ổn định mà bạn có thể tin tưởng.",
+                "why.eyebrow": "Lợi thế cạnh tranh", "why.title": "Vì sao chọn chúng tôi?", "why.copy": "Đội ngũ dịch giả hiểu cả ngôn ngữ và ngữ cảnh, đặc biệt với sản phẩm số. Chúng tôi dùng quy trình có cấu trúc để giữ chất lượng ổn định khi sản phẩm phát triển.", "why.e1.title": "Chuyên môn ngôn ngữ", "why.e1.copy": "Dịch giả hiểu ngữ cảnh, thuật ngữ và cách người dùng trải nghiệm sản phẩm số.", "why.e2.title": "Quy trình có cấu trúc", "why.e2.copy": "Quy trình rõ ràng, các bước rà soát và thống nhất thuật ngữ trong mọi dự án.", "why.e3.title": "Hỗ trợ dài hạn", "why.e3.copy": "Hỗ trợ dịch thuật và bản địa hóa liên tục khi nội dung sản phẩm thay đổi.", "standard.quality": "Chất lượng dịch thuật", "standard.high": "Cao", "standard.coverage": "Độ phủ ngôn ngữ", "standard.review": "Quy trình rà soát", "standard.multi": "Nhiều bước",
+                "careers.eyebrow": "Gia nhập đội ngũ", "careers.title": "Gia nhập Kaizen. Cùng Kaizen phát triển.", "careers.copy": "Bạn đang tìm nơi làm việc nghiêm túc với các dự án phần mềm quốc tế nhưng vẫn có niềm vui, sáng tạo và năng lượng tích cực mỗi ngày?", "careers.culture.title": "Không chỉ là dịch thuật.", "careers.culture.copy1": "Bằng các giải pháp dịch thuật và bản địa hóa toàn diện cho phần mềm, Kaizen giúp doanh nghiệp mở rộng sản phẩm ra toàn cầu.", "careers.culture.copy2": "Chúng tôi giúp dự án vận hành trơn tru và tạo trải nghiệm tự nhiên, hấp dẫn tại thị trường quốc tế bằng cách kết hợp ngôn ngữ chính xác với hiểu biết văn hóa.", "careers.v1.kicker": "Văn hóa", "careers.v1.title": "Không chỉ là dịch thuật", "careers.v1.copy": "Một đội ngũ xem bản địa hóa là giao tiếp sản phẩm, không chỉ chuyển đổi ngôn ngữ.", "careers.v2.title": "Quốc gia hiện diện", "careers.v2.copy": "Công việc đa văn hóa gắn với nhu cầu sản phẩm quốc tế thực tế.", "careers.v3.kicker": "Phát triển", "careers.v3.title": "Tăng trưởng đổi mới", "careers.v3.copy": "Nơi tài năng phát triển qua các dự án phần mềm toàn cầu nghiêm túc.", "careers.v4.kicker": "Đội ngũ", "careers.v4.title": "Môi trường hòa nhập", "careers.v4.copy": "Môi trường đa văn hóa tôn trọng khác biệt và hợp tác thực tiễn.",
+                "positions.eyebrow": "Tuyển dụng", "positions.title": "Vị trí đang mở.", "positions.copy": "Chúng tôi là đội ngũ dịch thuật và bản địa hóa tại TP. Hồ Chí Minh, luôn tìm kiếm những người tài năng, đam mê muốn góp phần đưa phần mềm Việt Nam ra thế giới.", "positions.fullTime": "Toàn thời gian", "positions.r1.title": "Quản lý dự án", "positions.r1.copy": "Điều phối dự án bản địa hóa, timeline, kiểm tra chất lượng và giao tiếp với khách hàng.", "positions.r2.title": "QA Art", "positions.r2.copy": "Rà soát nội dung đã bản địa hóa, tính nhất quán hình ảnh, hành vi bố cục và độ sẵn sàng sản phẩm.", "positions.r3.title": "QC Game", "positions.r3.copy": "Kiểm tra nội dung đã dịch về độ rõ ràng, ngữ cảnh, tính chính xác và trải nghiệm người dùng.", "positions.apply": "Ứng tuyển ngay", "positions.viewDescription": "Xem mô tả công việc", "positions.city": "TP. Hồ Chí Minh, Việt Nam", "cta.title": "Sẵn sàng để thế giới biết đến sản phẩm của bạn?", "cta.copy": "Bắt đầu dự án, hỏi về hỗ trợ bản địa hóa hoặc gia nhập Kaizen.", "footer.copy": "Dịch thuật và bản địa hóa chuyên nghiệp cho phần mềm và sản phẩm số. Chúng tôi giúp nội dung của bạn rõ ràng, nhất quán và tự nhiên ở mọi ngôn ngữ."
+            },
+            th: {
+                "title": "Kaizen Software - การแปลและโลคัลไลซ์", "meta.description": "Kaizen ช่วยธุรกิจแปลและโลคัลไลซ์ซอฟต์แวร์ แอป และผลิตภัณฑ์ดิจิทัลด้วยความชัดเจน ความสม่ำเสมอ และความเข้าใจวัฒนธรรม.",
+                "nav.home": "หน้าแรก", "nav.services": "บริการ", "nav.about": "เกี่ยวกับเรา", "nav.why": "ทำไมเลือกเรา", "nav.careers": "อาชีพ", "nav.join": "ร่วมงาน", "nav.positions": "ตำแหน่งงาน", "nav.contact": "ติดต่อเรา",
+                "hero.eyebrow": "พันธมิตรสู่ตลาดโลก", "hero.title": "Kaizen Software", "hero.copy": "ช่วยธุรกิจสื่อสารได้หลายภาษา เราให้บริการแปลและโลคัลไลซ์ซอฟต์แวร์ แอป และผลิตภัณฑ์ดิจิทัล โดยเน้นความชัดเจน ความสม่ำเสมอ และความเข้าใจผู้ใช้อย่างแท้จริง.", "hero.cta.primary": "สำรวจไปกับเรา", "hero.cta.secondary": "ร่วมงานกับเรา",
+                "metric.languages": "ภาษาที่เชี่ยวชาญ", "metric.countries": "ประเทศที่มีเครือข่าย", "metric.coverage": "การครอบคลุมภาษา", "metric.growth": "ดัชนีการเติบโต", "hero.card": "บริการแปลและโลคัลไลซ์มืออาชีพสำหรับซอฟต์แวร์และผลิตภัณฑ์ดิจิทัล ตั้งอยู่ในโฮจิมินห์ซิตี้ ประเทศเวียดนาม.",
+                "services.eyebrow": "บริการหลัก", "services.title": "เนื้อหาที่ชัดเจนสำหรับซอฟต์แวร์ระดับโลก.", "services.copy": "เราไม่ได้แค่แปลเนื้อหา แต่ปรับให้เหมาะกับผู้ใช้จริง เพื่อให้ผลิตภัณฑ์ชัดเจน เป็นธรรมชาติ และพร้อมสู่ตลาดโลก.", "services.s1.title": "การแปล", "services.s1.copy": "การแปลที่แม่นยำสำหรับซอฟต์แวร์ แอปพลิเคชัน และเนื้อหาดิจิทัล โดยเน้นความหมาย ความชัดเจน และความสม่ำเสมอ.", "services.s2.title": "โลคัลไลเซชัน", "services.s2.copy": "ปรับเนื้อหาให้ตรงกับภาษา น้ำเสียง และความคาดหวังของผู้ใช้ท้องถิ่น รวมถึงข้อความ UI เนื้อหาในผลิตภัณฑ์ และประสบการณ์ผู้ใช้.", "services.s3.title": "โซลูชันระดับโลก", "services.s3.copy": "สนับสนุนบริษัทที่เข้าสู่ตลาดใหม่ ช่วยจัดการเนื้อหาหลายภาษาและรักษาความสม่ำเสมอในวงกว้าง.",
+                "about.eyebrow": "เราเป็นใคร", "about.title": "เราคือ Kaizen บริษัทแปลและโลคัลไลซ์ซอฟต์แวร์จากเวียดนาม.", "about.copy": "เราช่วยธุรกิจเวียดนามและธุรกิจระหว่างประเทศขยายผลิตภัณฑ์ซอฟต์แวร์สู่ตลาดโลกผ่านการแปลที่แม่นยำและโลคัลไลซ์เชิงลึก เพื่อมอบประสบการณ์ที่เป็นธรรมชาติในกว่า 30 ภาษา.", "about.card1.title": "ภาษาที่เชี่ยวชาญ", "about.card1.copy": "การครอบคลุมสำหรับซอฟต์แวร์ แอป และผลิตภัณฑ์ดิจิทัลที่ต้องการการสนับสนุนหลายภาษา.", "about.card2.title": "พันธกิจ", "about.card2.copy": "ส่งมอบงานแปลที่แม่นยำพร้อมความเข้าใจวัฒนธรรม โดยผสานภาษาที่ถูกต้องกับโลคัลไลซ์ที่ใช้งานได้จริง.", "about.card3.title": "วิสัยทัศน์", "about.card3.copy": "เป็นพันธมิตรด้านภาษาที่น่าเชื่อถือสำหรับธุรกิจที่ขยายสู่ตลาดใหม่.", "about.card4.title": "สิ่งที่เราดูแล", "about.card4.copy": "การแปลที่แม่นยำ การปรับให้เข้ากับวัฒนธรรม และการประกันคุณภาพสำหรับเนื้อหาที่ต้องถูกต้อง เป็นธรรมชาติ และสม่ำเสมอ.",
+                "values.eyebrow": "ค่านิยมหลัก", "values.title": "รากฐานของการทำงานของเรา.", "values.copy": "ทุกโครงการถูกขับเคลื่อนด้วยความแม่นยำ ความชัดเจน ความสม่ำเสมอ และความน่าเชื่อถือ.", "values.v1.title": "ความแม่นยำ", "values.v1.copy": "เราให้ความสำคัญกับความหมาย คำศัพท์ และบริบทที่ถูกต้องในทุกงานแปล.", "values.v2.title": "ความชัดเจน", "values.v2.copy": "เนื้อหาเข้าใจง่ายและเป็นธรรมชาติสำหรับกลุ่มเป้าหมาย.", "values.v3.title": "ความสม่ำเสมอ", "values.v3.copy": "เรารักษาคำศัพท์และน้ำเสียงให้สอดคล้องกันทั่วทั้งผลิตภัณฑ์.", "values.v4.title": "ความน่าเชื่อถือ", "values.v4.copy": "ส่งมอบตรงเวลาและคุณภาพคงที่ที่ไว้วางใจได้.",
+                "why.eyebrow": "จุดแข็งของเรา", "why.title": "ทำไมต้องเรา?", "why.copy": "นักแปลของเราเข้าใจทั้งภาษาและบริบท โดยเฉพาะผลิตภัณฑ์ดิจิทัล เราใช้กระบวนการที่มีโครงสร้างเพื่อรักษาคุณภาพเมื่อผลิตภัณฑ์เติบโต.", "why.e1.title": "ความเชี่ยวชาญด้านภาษา", "why.e1.copy": "นักแปลเข้าใจบริบท คำศัพท์ และวิธีที่ผู้ใช้สัมผัสผลิตภัณฑ์ดิจิทัล.", "why.e2.title": "กระบวนการที่ชัดเจน", "why.e2.copy": "เวิร์กโฟลว์ ขั้นตอนตรวจทาน และการจัดแนวคำศัพท์ที่ชัดเจนในทุกโครงการ.", "why.e3.title": "การสนับสนุนระยะยาว", "why.e3.copy": "สนับสนุนการแปลและโลคัลไลซ์อย่างต่อเนื่องเมื่อเนื้อหาผลิตภัณฑ์เปลี่ยนแปลง.", "standard.quality": "คุณภาพการแปล", "standard.high": "สูง", "standard.coverage": "การครอบคลุมภาษา", "standard.review": "กระบวนการตรวจทาน", "standard.multi": "หลายขั้นตอน",
+                "careers.eyebrow": "ร่วมทีม", "careers.title": "เข้าร่วม Kaizen แล้วเติบโตไปด้วยกัน.", "careers.copy": "กำลังมองหาที่ทำงานที่จริงจังกับโครงการซอฟต์แวร์ระดับนานาชาติ แต่ยังมีความสนุก ความคิดสร้างสรรค์ และบรรยากาศดีทุกวัน?", "careers.culture.title": "มากกว่าการแปล.", "careers.culture.copy1": "ด้วยโซลูชันการแปลและโลคัลไลซ์ซอฟต์แวร์แบบครบวงจร Kaizen ช่วยธุรกิจขยายผลิตภัณฑ์สู่ตลาดโลก.", "careers.culture.copy2": "เราช่วยให้โครงการดำเนินไปอย่างราบรื่นและสร้างประสบการณ์ที่เป็นธรรมชาติในตลาดต่างประเทศด้วยภาษาและความเข้าใจวัฒนธรรม.", "careers.v1.kicker": "วัฒนธรรม", "careers.v1.title": "มากกว่าการแปล", "careers.v1.copy": "ทีมที่มองโลคัลไลซ์เป็นการสื่อสารผลิตภัณฑ์ ไม่ใช่แค่การเปลี่ยนภาษา.", "careers.v2.title": "ประเทศที่มีเครือข่าย", "careers.v2.copy": "งานหลากวัฒนธรรมที่เชื่อมโยงกับความต้องการจริงของผลิตภัณฑ์สากล.", "careers.v3.kicker": "การเติบโต", "careers.v3.title": "การเติบโตเชิงนวัตกรรม", "careers.v3.copy": "พื้นที่ที่คนเก่งเติบโตผ่านโครงการซอฟต์แวร์ระดับโลก.", "careers.v4.kicker": "ทีม", "careers.v4.title": "สภาพแวดล้อมที่เปิดกว้าง", "careers.v4.copy": "สภาพแวดล้อมหลากวัฒนธรรมที่เคารพความแตกต่างและการทำงานร่วมกัน.",
+                "positions.eyebrow": "รับสมัคร", "positions.title": "ตำแหน่งงานว่าง.", "positions.copy": "เราเป็นทีมแปลและโลคัลไลซ์ในโฮจิมินห์ซิตี้ มองหาคนเก่งและมีใจรักที่อยากช่วยนำซอฟต์แวร์เวียดนามสู่โลก.", "positions.fullTime": "เต็มเวลา", "positions.r1.title": "ผู้จัดการโครงการ", "positions.r1.copy": "ประสานงานโครงการโลคัลไลซ์ กำหนดเวลา ตรวจคุณภาพ และสื่อสารกับลูกค้า.", "positions.r2.title": "QA Art", "positions.r2.copy": "ตรวจทานเนื้อหาที่โลคัลไลซ์ ความสม่ำเสมอด้านภาพ พฤติกรรมเลย์เอาต์ และความพร้อมของผลิตภัณฑ์.", "positions.r3.title": "QC Game", "positions.r3.copy": "ตรวจเนื้อหาที่แปลด้านความชัดเจน บริบท ความถูกต้อง และประสบการณ์ผู้ใช้.", "positions.apply": "สมัครเลย", "positions.viewDescription": "ดูรายละเอียดงาน", "positions.city": "โฮจิมินห์ซิตี้, เวียดนาม", "cta.title": "พร้อมให้โลกได้รู้จักผลิตภัณฑ์ของคุณหรือยัง?", "cta.copy": "เริ่มโครงการ สอบถามการสนับสนุนโลคัลไลซ์ หรือเข้าร่วม Kaizen.", "footer.copy": "บริการแปลและโลคัลไลซ์มืออาชีพสำหรับซอฟต์แวร์และผลิตภัณฑ์ดิจิทัล เราช่วยให้เนื้อหาของคุณชัดเจน สม่ำเสมอ และเป็นธรรมชาติในทุกภาษา."
+            },
+            "pt-BR": {
+                "title": "Kaizen Software - Tradução e Localização", "meta.description": "A Kaizen ajuda empresas a traduzir e localizar softwares, apps e produtos digitais com clareza, consistência e compreensão cultural.",
+                "nav.home": "Início", "nav.services": "Serviços", "nav.about": "Sobre nós", "nav.why": "Por que nós", "nav.careers": "Carreiras", "nav.join": "Junte-se", "nav.positions": "Vagas abertas", "nav.contact": "Contato",
+                "hero.eyebrow": "O globalista arquitetural", "hero.title": "Kaizen Software", "hero.copy": "Ajudamos empresas a se comunicar em vários idiomas. Oferecemos tradução e localização para softwares, apps e produtos digitais, com foco em clareza, consistência e entendimento real do usuário.", "hero.cta.primary": "Explore conosco", "hero.cta.secondary": "Trabalhe conosco",
+                "metric.languages": "Idiomas dominados", "metric.countries": "Países presentes", "metric.coverage": "Cobertura linguística", "metric.growth": "Índice de visibilidade de crescimento", "hero.card": "Tradução e localização profissional para softwares e produtos digitais, com sede na Cidade de Ho Chi Minh, Vietnã.",
+                "services.eyebrow": "Serviços principais", "services.title": "Conteúdo claro para produtos de software globais.", "services.copy": "Não apenas traduzimos conteúdo. Adaptamos para usuários reais, para que seu produto seja claro, natural e pronto para mercados globais.", "services.s1.title": "Tradução", "services.s1.copy": "Tradução precisa para softwares, aplicativos e conteúdo digital, com foco em significado, clareza e consistência.", "services.s2.title": "Localização", "services.s2.copy": "Adaptação do conteúdo ao idioma, tom e expectativas locais, incluindo textos de UI, conteúdo do produto e experiência do usuário.", "services.s3.title": "Soluções globais", "services.s3.copy": "Suporte para empresas que entram em novos mercados. Ajudamos a gerenciar conteúdo multilíngue e manter consistência em escala.",
+                "about.eyebrow": "Quem somos", "about.title": "Somos a Kaizen, uma empresa vietnamita de tradução e localização de software.", "about.copy": "Ajudamos empresas vietnamitas e internacionais a expandir seus produtos de software para o mercado global por meio de tradução precisa e localização aprofundada, oferecendo uma experiência natural em mais de 30 idiomas.", "about.card1.title": "Idiomas dominados", "about.card1.copy": "Cobertura criada para softwares, apps e produtos digitais que precisam de suporte multilíngue prático.", "about.card2.title": "Nossa missão", "about.card2.copy": "Entregar tradução precisa com compreensão cultural real, combinando linguagem exata com localização prática.", "about.card3.title": "Nossa visão", "about.card3.copy": "Ser um parceiro linguístico confiável para empresas que se expandem para novos mercados.", "about.card4.title": "O que fazemos", "about.card4.copy": "Tradução precisa, adaptação cultural e garantia de qualidade para conteúdos que precisam ser corretos, naturais e consistentes.",
+                "values.eyebrow": "Nossos valores", "values.title": "A base do nosso trabalho.", "values.copy": "Cada projeto é guiado por precisão, clareza, consistência e confiabilidade.", "values.v1.title": "Precisão", "values.v1.copy": "Focamos no significado, na terminologia e no contexto corretos em cada tradução.", "values.v2.title": "Clareza", "values.v2.copy": "Conteúdo fácil de entender e natural para o público-alvo.", "values.v3.title": "Consistência", "values.v3.copy": "Mantemos terminologia e tom alinhados em todo o produto.", "values.v4.title": "Confiabilidade", "values.v4.copy": "Entrega no prazo e qualidade estável em que você pode confiar.",
+                "why.eyebrow": "Diferencial competitivo", "why.title": "Por que nós?", "why.copy": "Nossos tradutores entendem idioma e contexto, especialmente em produtos digitais. Usamos fluxos estruturados para manter a qualidade estável conforme o produto cresce.", "why.e1.title": "Especialização linguística", "why.e1.copy": "Tradutores que entendem contexto, terminologia e como usuários vivenciam produtos digitais.", "why.e2.title": "Processo estruturado", "why.e2.copy": "Fluxos claros, etapas de revisão e alinhamento terminológico em cada projeto.", "why.e3.title": "Suporte de longo prazo", "why.e3.copy": "Suporte contínuo de tradução e localização conforme o conteúdo do produto muda.", "standard.quality": "Qualidade da tradução", "standard.high": "Alta", "standard.coverage": "Cobertura linguística", "standard.review": "Processo de revisão", "standard.multi": "Multietapas",
+                "careers.eyebrow": "Junte-se ao time", "careers.title": "Junte-se à Kaizen. Vamos evoluir juntos.", "careers.copy": "Procura um lugar para trabalhar seriamente em projetos internacionais de software, mas ainda com diversão, criatividade e boas energias todos os dias?", "careers.culture.title": "Mais que tradução.", "careers.culture.copy1": "Ao entregar soluções completas de tradução e localização para software, a Kaizen ajuda empresas a expandir seus produtos globalmente.", "careers.culture.copy2": "Fazemos projetos rodarem com fluidez e criamos experiências naturais em mercados internacionais combinando precisão linguística e visão cultural.", "careers.v1.kicker": "Cultura", "careers.v1.title": "Mais que tradução", "careers.v1.copy": "Um time que trata localização como comunicação de produto, não apenas conversão de idioma.", "careers.v2.title": "Países presentes", "careers.v2.copy": "Trabalho multicultural conectado a necessidades reais de produtos internacionais.", "careers.v3.kicker": "Crescimento", "careers.v3.title": "Crescimento inovador", "careers.v3.copy": "Onde talentos crescem por meio de projetos sérios de software global.", "careers.v4.kicker": "Equipe", "careers.v4.title": "Ambiente inclusivo", "careers.v4.copy": "Um ambiente multicultural que respeita diferenças e colaboração prática.",
+                "positions.eyebrow": "Recrutamento", "positions.title": "Vagas abertas.", "positions.copy": "Somos uma equipe de tradução e localização sediada na Cidade de Ho Chi Minh, sempre procurando pessoas talentosas e apaixonadas que queiram levar o software vietnamita ao mundo.", "positions.fullTime": "Tempo integral", "positions.r1.title": "Gestão de Projetos", "positions.r1.copy": "Coordenar projetos de localização, prazos, verificações de qualidade e comunicação com clientes.", "positions.r2.title": "QA Art", "positions.r2.copy": "Revisar conteúdo localizado, consistência visual, comportamento de layout e prontidão do produto.", "positions.r3.title": "QC Game", "positions.r3.copy": "Verificar conteúdo traduzido quanto a clareza, contexto, correção e experiência do usuário.", "positions.apply": "Candidate-se", "positions.viewDescription": "Ver descrição da vaga", "positions.city": "Cidade de Ho Chi Minh, Vietnã", "cta.title": "Pronto para apresentar seu produto ao mundo?", "cta.copy": "Inicie um projeto, pergunte sobre suporte de localização ou junte-se à Kaizen.", "footer.copy": "Tradução e localização profissional para softwares e produtos digitais. Ajudamos seu conteúdo a permanecer claro, consistente e natural em todos os idiomas."
+            },
+            zh: {
+                "title": "Kaizen Software - 翻译与本地化", "meta.description": "Kaizen 帮助企业以清晰、一致且具文化理解的方式翻译和本地化软件、应用与数字产品。",
+                "nav.home": "首页", "nav.services": "服务", "nav.about": "关于我们", "nav.why": "选择我们", "nav.careers": "职业发展", "nav.join": "加入我们", "nav.positions": "开放职位", "nav.contact": "联系我们",
+                "hero.eyebrow": "面向全球的架构型伙伴", "hero.title": "Kaizen Software", "hero.copy": "我们帮助企业用多种语言沟通，为软件、应用和数字产品提供翻译与本地化服务，重视清晰度、一致性和真实的用户理解。", "hero.cta.primary": "了解我们", "hero.cta.secondary": "加入我们",
+                "metric.languages": "精通语言", "metric.countries": "覆盖国家", "metric.coverage": "语言覆盖", "metric.growth": "增长可见度指数", "hero.card": "面向软件和数字产品的专业翻译与本地化服务，总部位于越南胡志明市。",
+                "services.eyebrow": "核心服务", "services.title": "为全球软件产品打造清晰内容。", "services.copy": "我们不只是翻译内容，而是为真实用户进行适配，让产品清晰、自然，并准备好进入全球市场。", "services.s1.title": "翻译", "services.s1.copy": "为软件、应用和数字内容提供准确翻译，关注含义、清晰度和一致性。", "services.s2.title": "本地化", "services.s2.copy": "根据当地语言、语气和用户期望调整内容，包括界面文本、产品内内容和用户体验。", "services.s3.title": "全球解决方案", "services.s3.copy": "支持企业进入新市场，帮助管理多语言内容并保持规模化一致性。",
+                "about.eyebrow": "我们是谁", "about.title": "我们是 Kaizen，一家位于越南的软件翻译与本地化公司。", "about.copy": "我们通过准确翻译和深度本地化，帮助越南及国际企业将软件产品推向全球市场，以 30 多种语言为用户提供自然、接近母语的体验。", "about.card1.title": "精通语言", "about.card1.copy": "为需要实用多语言支持的软件、应用和数字产品而建立的覆盖能力。", "about.card2.title": "我们的使命", "about.card2.copy": "结合精准语言和实用本地化，交付具备真实文化理解的准确翻译。", "about.card3.title": "我们的愿景", "about.card3.copy": "成为企业进入新市场时值得信赖的语言伙伴。", "about.card4.title": "我们处理什么", "about.card4.copy": "准确翻译、文化适配和质量保证，确保内容正确、自然且一致。",
+                "values.eyebrow": "核心价值", "values.title": "我们工作的基础。", "values.copy": "每个项目都由准确、清晰、一致和可靠塑造。", "values.v1.title": "准确", "values.v1.copy": "我们在每一次翻译中关注正确含义、术语和语境。", "values.v2.title": "清晰", "values.v2.copy": "内容易于理解，并对目标用户自然。", "values.v3.title": "一致", "values.v3.copy": "我们在整个产品中保持术语和语气一致。", "values.v4.title": "可靠", "values.v4.copy": "按时交付，并提供值得信赖的稳定质量。",
+                "why.eyebrow": "竞争优势", "why.title": "为什么选择我们？", "why.copy": "我们的译者理解语言和语境，尤其了解数字产品。我们使用结构化流程，在产品成长时保持质量稳定。", "why.e1.title": "语言专长", "why.e1.copy": "理解语境、术语以及用户如何体验数字产品的译者。", "why.e2.title": "结构化流程", "why.e2.copy": "每个项目都有清晰流程、审校步骤和术语对齐。", "why.e3.title": "长期支持", "why.e3.copy": "随着产品内容变化，持续提供翻译和本地化支持。", "standard.quality": "翻译质量", "standard.high": "高", "standard.coverage": "语言覆盖", "standard.review": "审校流程", "standard.multi": "多步骤",
+                "careers.eyebrow": "加入团队", "careers.title": "加入 Kaizen，一起持续进步。", "careers.copy": "你是否在寻找一个认真参与国际软件项目，同时每天仍有乐趣、创造力和良好氛围的地方？", "careers.culture.title": "不止是翻译。", "careers.culture.copy1": "通过为软件提供全面的翻译和本地化解决方案，Kaizen 帮助企业将产品拓展到全球。", "careers.culture.copy2": "我们结合精准语言和文化洞察，让项目顺利推进，并在国际市场创造自然、有吸引力的体验。", "careers.v1.kicker": "文化", "careers.v1.title": "不止是翻译", "careers.v1.copy": "我们把本地化视为产品沟通，而不只是语言转换。", "careers.v2.title": "覆盖国家", "careers.v2.copy": "与真实国际产品需求相连的多文化工作。", "careers.v3.kicker": "成长", "careers.v3.title": "创新成长", "careers.v3.copy": "人才通过严肃的全球软件项目成长和发展。", "careers.v4.kicker": "团队", "careers.v4.title": "包容环境", "careers.v4.copy": "尊重差异并重视实际协作的多文化环境。",
+                "positions.eyebrow": "招聘", "positions.title": "开放职位。", "positions.copy": "我们是位于胡志明市的翻译与本地化团队，始终寻找有才华、有热情的人，一起帮助越南软件走向世界。", "positions.fullTime": "全职", "positions.r1.title": "项目管理", "positions.r1.copy": "协调本地化项目、时间表、质量检查和客户沟通。", "positions.r2.title": "QA Art", "positions.r2.copy": "审核本地化内容、视觉一致性、布局表现和产品就绪度。", "positions.r3.title": "QC Game", "positions.r3.copy": "检查译文内容的清晰度、语境、正确性和用户体验。", "positions.apply": "立即申请", "positions.viewDescription": "查看职位描述", "positions.city": "越南胡志明市", "cta.title": "准备好让世界了解你的产品了吗？", "cta.copy": "启动项目，咨询本地化支持，或加入 Kaizen。", "footer.copy": "面向软件和数字产品的专业翻译与本地化服务。我们帮助你的内容在每种语言中保持清晰、一致和自然。"
+            },
+            fr: {
+                "title": "Kaizen Software - Traduction et localisation", "meta.description": "Kaizen aide les entreprises à traduire et localiser logiciels, applications et produits numériques avec clarté, cohérence et compréhension culturelle.",
+                "nav.home": "Accueil", "nav.services": "Services", "nav.about": "À propos", "nav.why": "Pourquoi nous", "nav.careers": "Carrières", "nav.join": "Nous rejoindre", "nav.positions": "Postes ouverts", "nav.contact": "Contact",
+                "hero.eyebrow": "Le partenaire global structuré", "hero.title": "Kaizen Software", "hero.copy": "Nous aidons les entreprises à communiquer dans plusieurs langues. Nous proposons des services de traduction et de localisation pour logiciels, applications et produits numériques, avec un accent sur la clarté, la cohérence et la compréhension réelle des utilisateurs.", "hero.cta.primary": "Explorer avec nous", "hero.cta.secondary": "Travailler avec nous",
+                "metric.languages": "Langues maîtrisées", "metric.countries": "Pays couverts", "metric.coverage": "Couverture linguistique", "metric.growth": "Indice de visibilité de croissance", "hero.card": "Traduction et localisation professionnelles pour logiciels et produits numériques, basées à Hô Chi Minh-Ville, Vietnam.",
+                "services.eyebrow": "Services clés", "services.title": "Des contenus clairs pour des logiciels mondiaux.", "services.copy": "Nous ne faisons pas que traduire. Nous adaptons les contenus aux vrais utilisateurs afin que votre produit soit clair, naturel et prêt pour les marchés internationaux.", "services.s1.title": "Traduction", "services.s1.copy": "Traduction précise pour logiciels, applications et contenus numériques, centrée sur le sens, la clarté et la cohérence.", "services.s2.title": "Localisation", "services.s2.copy": "Adaptation des contenus à la langue, au ton et aux attentes locales, y compris textes d’interface, contenus produit et expérience utilisateur.", "services.s3.title": "Solutions globales", "services.s3.copy": "Accompagnement des entreprises qui entrent sur de nouveaux marchés. Nous aidons à gérer les contenus multilingues et la cohérence à grande échelle.",
+                "about.eyebrow": "Qui sommes-nous", "about.title": "Nous sommes Kaizen, une entreprise vietnamienne de traduction et de localisation de logiciels.", "about.copy": "Nous aidons les entreprises vietnamiennes et internationales à développer leurs logiciels sur le marché mondial grâce à une traduction précise et une localisation approfondie, pour offrir une expérience naturelle dans plus de 30 langues.", "about.card1.title": "Langues maîtrisées", "about.card1.copy": "Une couverture conçue pour les logiciels, applications et produits numériques qui nécessitent un support multilingue concret.", "about.card2.title": "Notre mission", "about.card2.copy": "Fournir une traduction précise avec une vraie compréhension culturelle en combinant langue exacte et localisation pratique.", "about.card3.title": "Notre vision", "about.card3.copy": "Être un partenaire linguistique fiable pour les entreprises qui se développent sur de nouveaux marchés.", "about.card4.title": "Ce que nous traitons", "about.card4.copy": "Traduction précise, adaptation culturelle et assurance qualité pour des contenus corrects, naturels et cohérents.",
+                "values.eyebrow": "Nos valeurs", "values.title": "La base de notre travail.", "values.copy": "Chaque projet repose sur la précision, la clarté, la cohérence et la fiabilité.", "values.v1.title": "Précision", "values.v1.copy": "Nous nous concentrons sur le sens, la terminologie et le contexte corrects dans chaque traduction.", "values.v2.title": "Clarté", "values.v2.copy": "Des contenus faciles à comprendre et naturels pour le public cible.", "values.v3.title": "Cohérence", "values.v3.copy": "Nous alignons terminologie et ton sur l’ensemble du produit.", "values.v4.title": "Fiabilité", "values.v4.copy": "Des livraisons ponctuelles et une qualité stable sur lesquelles vous pouvez compter.",
+                "why.eyebrow": "Avantage concurrentiel", "why.title": "Pourquoi nous ?", "why.copy": "Nos traducteurs comprennent la langue et le contexte, surtout pour les produits numériques. Nous utilisons des processus structurés pour maintenir une qualité stable quand votre produit grandit.", "why.e1.title": "Expertise linguistique", "why.e1.copy": "Des traducteurs qui comprennent le contexte, la terminologie et la façon dont les utilisateurs vivent les produits numériques.", "why.e2.title": "Processus structuré", "why.e2.copy": "Des flux clairs, des étapes de revue et un alignement terminologique sur chaque projet.", "why.e3.title": "Support long terme", "why.e3.copy": "Un support continu en traduction et localisation lorsque les contenus produit évoluent.", "standard.quality": "Qualité de traduction", "standard.high": "Élevée", "standard.coverage": "Couverture linguistique", "standard.review": "Processus de revue", "standard.multi": "Multi-étapes",
+                "careers.eyebrow": "Rejoindre l’équipe", "careers.title": "Rejoignez Kaizen. Progressons ensemble.", "careers.copy": "Vous cherchez un endroit où travailler sérieusement sur des projets logiciels internationaux, tout en gardant plaisir, créativité et bonne énergie au quotidien ?", "careers.culture.title": "Plus que de la traduction.", "careers.culture.copy1": "Avec des solutions complètes de traduction et de localisation pour logiciels, Kaizen aide les entreprises à développer leurs produits à l’international.", "careers.culture.copy2": "Nous fluidifions les projets et créons des expériences naturelles sur les marchés internationaux en combinant précision linguistique et compréhension culturelle.", "careers.v1.kicker": "Culture", "careers.v1.title": "Plus que de la traduction", "careers.v1.copy": "Une équipe qui considère la localisation comme une communication produit, pas seulement comme un changement de langue.", "careers.v2.title": "Pays couverts", "careers.v2.copy": "Un travail multiculturel relié à de vrais besoins de produits internationaux.", "careers.v3.kicker": "Croissance", "careers.v3.title": "Croissance innovante", "careers.v3.copy": "Un lieu où les talents grandissent grâce à des projets logiciels mondiaux exigeants.", "careers.v4.kicker": "Équipe", "careers.v4.title": "Environnement inclusif", "careers.v4.copy": "Un environnement multiculturel qui respecte les différences et la collaboration concrète.",
+                "positions.eyebrow": "Recrutement", "positions.title": "Postes ouverts.", "positions.copy": "Nous sommes une équipe de traduction et localisation basée à Hô Chi Minh-Ville, toujours à la recherche de personnes talentueuses et passionnées pour aider les logiciels vietnamiens à rayonner dans le monde.", "positions.fullTime": "Temps plein", "positions.r1.title": "Gestion de projet", "positions.r1.copy": "Coordonner les projets de localisation, les délais, les contrôles qualité et la communication client.", "positions.r2.title": "QA Art", "positions.r2.copy": "Revoir les contenus localisés, la cohérence visuelle, le comportement des mises en page et la préparation produit.", "positions.r3.title": "QC Game", "positions.r3.copy": "Vérifier les contenus traduits pour la clarté, le contexte, la justesse et l’expérience utilisateur.", "positions.apply": "Postuler", "positions.viewDescription": "Voir la fiche de poste", "positions.city": "Hô Chi Minh-Ville, Vietnam", "cta.title": "Prêt à faire connaître votre produit au monde ?", "cta.copy": "Lancez un projet, demandez un support de localisation ou rejoignez Kaizen.", "footer.copy": "Traduction et localisation professionnelles pour logiciels et produits numériques. Nous aidons vos contenus à rester clairs, cohérents et naturels dans chaque langue."
+            },
+            km: {
+                "title": "Kaizen Software - ការបកប្រែ និងមូលដ្ឋានីយកម្ម", "meta.description": "Kaizen ជួយអាជីវកម្មបកប្រែ និងមូលដ្ឋានីយកម្មកម្មវិធី អាប់ និងផលិតផលឌីជីថល ដោយភាពច្បាស់លាស់ ស្ថិរភាព និងការយល់ដឹងវប្បធម៌.",
+                "nav.home": "ទំព័រដើម", "nav.services": "សេវាកម្ម", "nav.about": "អំពីយើង", "nav.why": "ហេតុអ្វីយើង", "nav.careers": "អាជីព", "nav.join": "ចូលរួម", "nav.positions": "មុខតំណែង", "nav.contact": "ទាក់ទង",
+                "hero.eyebrow": "ដៃគូសកលដែលមានរចនាសម្ព័ន្ធ", "hero.title": "Kaizen Software", "hero.copy": "យើងជួយអាជីវកម្មទំនាក់ទំនងជាច្រើនភាសា។ យើងផ្តល់សេវាបកប្រែ និងមូលដ្ឋានីយកម្មសម្រាប់កម្មវិធី អាប់ និងផលិតផលឌីជីថល ដោយផ្តោតលើភាពច្បាស់ ស្ថិរភាព និងការយល់អ្នកប្រើប្រាស់ពិតប្រាកដ.", "hero.cta.primary": "ស្វែងយល់ជាមួយយើង", "hero.cta.secondary": "ធ្វើការជាមួយយើង",
+                "metric.languages": "ភាសាដែលជំនាញ", "metric.countries": "ប្រទេសដែលមានវត្តមាន", "metric.coverage": "ការគ្របដណ្ដប់ភាសា", "metric.growth": "សន្ទស្សន៍កំណើន", "hero.card": "សេវាបកប្រែ និងមូលដ្ឋានីយកម្មវិជ្ជាជីវៈសម្រាប់កម្មវិធី និងផលិតផលឌីជីថល មានមូលដ្ឋាននៅទីក្រុងហូជីមិញ វៀតណាម.",
+                "services.eyebrow": "សេវាកម្មស្នូល", "services.title": "មាតិកាច្បាស់សម្រាប់ផលិតផលកម្មវិធីសកល.", "services.copy": "យើងមិនត្រឹមតែបកប្រែមាតិកាទេ។ យើងកែសម្រួលសម្រាប់អ្នកប្រើប្រាស់ពិត ដើម្បីឱ្យផលិតផលរបស់អ្នកច្បាស់ ធម្មជាតិ និងរួចរាល់សម្រាប់ទីផ្សារសកល.", "services.s1.title": "ការបកប្រែ", "services.s1.copy": "ការបកប្រែត្រឹមត្រូវសម្រាប់កម្មវិធី អាប់ និងមាតិកាឌីជីថល ដោយផ្តោតលើអត្ថន័យ ភាពច្បាស់ និងស្ថិរភាព.", "services.s2.title": "មូលដ្ឋានីយកម្ម", "services.s2.copy": "កែសម្រួលមាតិកាឱ្យត្រូវនឹងភាសា សម្លេង និងការរំពឹងទុករបស់អ្នកប្រើប្រាស់ក្នុងតំបន់ រួមទាំងអត្ថបទ UI និងបទពិសោធន៍អ្នកប្រើ.", "services.s3.title": "ដំណោះស្រាយសកល", "services.s3.copy": "គាំទ្រក្រុមហ៊ុនចូលទីផ្សារថ្មី។ យើងជួយគ្រប់គ្រងមាតិកាច្រើនភាសា និងរក្សាស្ថិរភាពនៅទំហំធំ.",
+                "about.eyebrow": "យើងជានរណា", "about.title": "យើងគឺ Kaizen ក្រុមហ៊ុនបកប្រែ និងមូលដ្ឋានីយកម្មកម្មវិធីនៅវៀតណាម.", "about.copy": "យើងជួយអាជីវកម្មវៀតណាម និងអន្តរជាតិពង្រីកផលិតផលកម្មវិធីទៅទីផ្សារសកល តាមរយៈការបកប្រែត្រឹមត្រូវ និងមូលដ្ឋានីយកម្មជ្រាលជ្រៅ ដើម្បីផ្តល់បទពិសោធន៍ធម្មជាតិជាង 30 ភាសា.", "about.card1.title": "ភាសាដែលជំនាញ", "about.card1.copy": "ការគ្របដណ្ដប់សម្រាប់កម្មវិធី អាប់ និងផលិតផលឌីជីថលដែលត្រូវការគាំទ្រច្រើនភាសា.", "about.card2.title": "បេសកកម្មរបស់យើង", "about.card2.copy": "ផ្តល់ការបកប្រែត្រឹមត្រូវជាមួយការយល់វប្បធម៌ពិត ដោយបញ្ចូលភាសាច្បាស់ជាមួយមូលដ្ឋានីយកម្មជាក់ស្តែង.", "about.card3.title": "ចក្ខុវិស័យ", "about.card3.copy": "ក្លាយជាដៃគូភាសាដែលទុកចិត្តបានសម្រាប់អាជីវកម្មដែលពង្រីកទៅទីផ្សារថ្មី.", "about.card4.title": "អ្វីដែលយើងគ្រប់គ្រង", "about.card4.copy": "ការបកប្រែត្រឹមត្រូវ ការកែសម្រួលវប្បធម៌ និងការធានាគុណភាពសម្រាប់មាតិកាដែលត្រូវត្រឹមត្រូវ ធម្មជាតិ និងស្ថិរភាព.",
+                "values.eyebrow": "គុណតម្លៃស្នូល", "values.title": "គ្រឹះនៃការងាររបស់យើង.", "values.copy": "គម្រោងនីមួយៗត្រូវបានបង្កើតដោយភាពត្រឹមត្រូវ ភាពច្បាស់ ស្ថិរភាព និងភាពទុកចិត្ត.", "values.v1.title": "ភាពត្រឹមត្រូវ", "values.v1.copy": "យើងផ្តោតលើអត្ថន័យ ពាក្យបច្ចេកទេស និងបរិបទត្រឹមត្រូវក្នុងការបកប្រែទាំងអស់.", "values.v2.title": "ភាពច្បាស់", "values.v2.copy": "មាតិកាងាយយល់ និងធម្មជាតិសម្រាប់អ្នកប្រើគោលដៅ.", "values.v3.title": "ស្ថិរភាព", "values.v3.copy": "យើងរក្សាពាក្យ និងសម្លេងឱ្យស្របគ្នាទូទាំងផលិតផល.", "values.v4.title": "ភាពទុកចិត្ត", "values.v4.copy": "ប្រគល់ការងារទាន់ពេល និងគុណភាពមានស្ថិរភាព.",
+                "why.eyebrow": "អត្ថប្រយោជន៍ប្រកួតប្រជែង", "why.title": "ហេតុអ្វីជ្រើសយើង?", "why.copy": "អ្នកបកប្រែរបស់យើងយល់ទាំងភាសា និងបរិបទ ជាពិសេសសម្រាប់ផលិតផលឌីជីថល។ យើងប្រើដំណើរការមានរចនាសម្ព័ន្ធដើម្បីរក្សាគុណភាព.", "why.e1.title": "ជំនាញភាសា", "why.e1.copy": "អ្នកបកប្រែដែលយល់បរិបទ ពាក្យបច្ចេកទេស និងរបៀបអ្នកប្រើប្រាស់បទពិសោធន៍ផលិតផលឌីជីថល.", "why.e2.title": "ដំណើរការមានរចនាសម្ព័ន្ធ", "why.e2.copy": "លំហូរការងារច្បាស់ ជំហានពិនិត្យ និងការតម្រឹមពាក្យក្នុងគម្រោងនីមួយៗ.", "why.e3.title": "គាំទ្ររយៈពេលវែង", "why.e3.copy": "គាំទ្រការបកប្រែ និងមូលដ្ឋានីយកម្មបន្តនៅពេលមាតិកាផលិតផលផ្លាស់ប្តូរ.", "standard.quality": "គុណភាពបកប្រែ", "standard.high": "ខ្ពស់", "standard.coverage": "ការគ្របដណ្ដប់ភាសា", "standard.review": "ដំណើរការពិនិត្យ", "standard.multi": "ច្រើនជំហាន",
+                "careers.eyebrow": "ចូលរួមក្រុម", "careers.title": "ចូលរួម Kaizen។ អភិវឌ្ឍជាមួយគ្នា.", "careers.copy": "កំពុងស្វែងរកកន្លែងដែលអាចធ្វើការយ៉ាងម៉ត់ចត់លើគម្រោងកម្មវិធីអន្តរជាតិ ប៉ុន្តែនៅមានភាពរីករាយ ច្នៃប្រឌិត និងបរិយាកាសល្អរៀងរាល់ថ្ងៃ?", "careers.culture.title": "លើសពីការបកប្រែ.", "careers.culture.copy1": "តាមរយៈដំណោះស្រាយបកប្រែ និងមូលដ្ឋានីយកម្មពេញលេញសម្រាប់កម្មវិធី Kaizen ជួយអាជីវកម្មពង្រីកផលិតផលទៅសកល.", "careers.culture.copy2": "យើងធ្វើឱ្យគម្រោងដំណើរការរលូន និងបង្កើតបទពិសោធន៍ធម្មជាតិនៅទីផ្សារអន្តរជាតិដោយបញ្ចូលភាសាច្បាស់ជាមួយការយល់វប្បធម៌.", "careers.v1.kicker": "វប្បធម៌", "careers.v1.title": "លើសពីការបកប្រែ", "careers.v1.copy": "ក្រុមដែលចាត់ទុកមូលដ្ឋានីយកម្មជាការទំនាក់ទំនងផលិតផល មិនមែនត្រឹមបម្លែងភាសា.", "careers.v2.title": "ប្រទេសដែលមានវត្តមាន", "careers.v2.copy": "ការងារចម្រុះវប្បធម៌ដែលភ្ជាប់នឹងតម្រូវការផលិតផលអន្តរជាតិពិត.", "careers.v3.kicker": "កំណើន", "careers.v3.title": "កំណើននវានុវត្តន៍", "careers.v3.copy": "កន្លែងដែលទេពកោសល្យលូតលាស់តាមរយៈគម្រោងកម្មវិធីសកល.", "careers.v4.kicker": "ក្រុម", "careers.v4.title": "បរិយាកាសរួមបញ្ចូល", "careers.v4.copy": "បរិយាកាសចម្រុះវប្បធម៌ដែលគោរពភាពខុសគ្នា និងការសហការជាក់ស្តែង.",
+                "positions.eyebrow": "ជ្រើសរើសបុគ្គលិក", "positions.title": "មុខតំណែងបើក.", "positions.copy": "យើងជាក្រុមបកប្រែ និងមូលដ្ឋានីយកម្មនៅទីក្រុងហូជីមិញ ដែលតែងតែស្វែងរកមនុស្សមានទេពកោសល្យ និងចំណង់ចំណូលចិត្ត ដើម្បីនាំកម្មវិធីវៀតណាមទៅពិភពលោក.", "positions.fullTime": "ពេញម៉ោង", "positions.r1.title": "គ្រប់គ្រងគម្រោង", "positions.r1.copy": "សម្របសម្រួលគម្រោងមូលដ្ឋានីយកម្ម កាលវិភាគ ការត្រួតពិនិត្យគុណភាព និងទំនាក់ទំនងអតិថិជន.", "positions.r2.title": "QA Art", "positions.r2.copy": "ពិនិត្យមាតិកាដែលបានមូលដ្ឋានីយកម្ម ស្ថិរភាពរូបភាព ប្លង់ និងភាពរួចរាល់ផលិតផល.", "positions.r3.title": "QC Game", "positions.r3.copy": "ពិនិត្យមាតិកាបកប្រែសម្រាប់ភាពច្បាស់ បរិបទ ភាពត្រឹមត្រូវ និងបទពិសោធន៍អ្នកប្រើ.", "positions.apply": "ដាក់ពាក្យឥឡូវ", "positions.viewDescription": "មើលពិពណ៌នាការងារ", "positions.city": "ទីក្រុងហូជីមិញ, វៀតណាម", "cta.title": "ត្រៀមឱ្យពិភពលោកស្គាល់ផលិតផលរបស់អ្នកហើយឬនៅ?", "cta.copy": "ចាប់ផ្តើមគម្រោង សួរអំពីការគាំទ្រមូលដ្ឋានីយកម្ម ឬចូលរួមជាមួយ Kaizen.", "footer.copy": "សេវាបកប្រែ និងមូលដ្ឋានីយកម្មវិជ្ជាជីវៈសម្រាប់កម្មវិធី និងផលិតផលឌីជីថល។ យើងជួយឱ្យមាតិការបស់អ្នកច្បាស់ ស្ថិរភាព និងធម្មជាតិក្នុងគ្រប់ភាសា."
+            }
+        };
+
+        function applyLanguage(lang) {
+            const dictionary = translations[lang] || translations.en;
+            const officialLocale = lang === "vi" ? "vi" : "en";
+            document.documentElement.lang = lang;
+            i18nTargets.forEach(([selector, key, mode]) => {
+                const value = dictionary[key] || translations.en[key];
+                if (!value) return;
+                if (mode === "title") {
+                    document.title = value;
+                    return;
+                }
+                if (mode === "content") {
+                    const element = document.querySelector(selector);
+                    if (element) element.setAttribute("content", value);
+                    return;
+                }
+                const elements = mode === "textAll"
+                    ? document.querySelectorAll(selector)
+                    : [document.querySelector(selector)];
+                elements.forEach((element) => {
+                    if (element) element.textContent = value;
+                });
+            });
+            document.querySelectorAll(".official-careers-link").forEach((link) => {
+                link.href = `https://kaizenvn.live/${officialLocale}/careers`;
+            });
+            document.querySelectorAll(".job-link[data-job-id]").forEach((link) => {
+                link.href = `https://kaizenvn.live/${officialLocale}/careers/${link.dataset.jobId}`;
+            });
+            languageSelect.value = dictionary === translations[lang] ? lang : "en";
+            localStorage.setItem("kaizen-language", languageSelect.value);
+        }
 
         function updateNavState() {
             nav.classList.toggle("is-scrolled", window.scrollY > 10);
@@ -1205,6 +1538,10 @@
             });
         });
 
+        languageSelect.addEventListener("change", () => {
+            applyLanguage(languageSelect.value);
+        });
+
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
@@ -1227,6 +1564,7 @@
             });
         }, { passive: true });
 
+        applyLanguage(localStorage.getItem("kaizen-language") || "en");
         updateNavState();
     </script>
 </body>
